@@ -28,13 +28,27 @@
      Smart Portables
   </description>
 
+  <welcome-file-list>  
+   <welcome-file>Home</welcome-file>  
+  </welcome-file-list> 
+
   <servlet>
-    <servlet-name>HelloWorld</servlet-name>
-    <servlet-class>HelloWorld</servlet-class>
+    <servlet-name>Home</servlet-name>
+    <servlet-class>Home</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>HelloWorld</servlet-name>
-    <url-pattern>/HelloWorld</url-pattern>
+    <servlet-name>Home</servlet-name>
+    <url-pattern>/Home</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>LoginPage</servlet-name>
+    <servlet-class>LoginPage</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LoginPage</servlet-name>
+    <url-pattern>/LoginPage</url-pattern>
   </servlet-mapping>
 </web-app>
