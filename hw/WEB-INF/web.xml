@@ -91,4 +91,20 @@
     <servlet-name>SignupServlet</servlet-name>
     <url-pattern>/SignupServlet</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>WatchServlet</servlet-name>
+    <servlet-class>WatchServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>WatchServlet</servlet-name>
+    <url-pattern>/WatchServlet</url-pattern>
+  </servlet-mapping>
+
+
+
+
+
+
 </web-app>

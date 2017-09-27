@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProductCatalog>
+    <item id="w01">
+        <name>Apple Watch V1</name>
+        <price>399</price>
+        <discount>0.80</discount>
+        <rebate>20</rebate>
+        <accessories>
+            <accessory>Watch belt 1</accessory>
+            <accessory>Watch belt 2</accessory>
+            <accessory>Watch belt 3</accessory>
+            <accessory>Watch Case 1</accessory>
+            <accessory>Watch Case 2</accessory>
+            <accessory>Watch Case 3</accessory>
+            <accessory>Watch Case 4</accessory>
+        </accessories>
+    </item>
+    <item id="w02">
+        <name>Moto 360</name>
+        <price >299</price>
+        <discount>0.90</discount>
+        <accessories>
+            <accessory>Watch belt 1</accessory>
+            <accessory>Watch belt 2</accessory>
+            <accessory>Watch belt 3</accessory>
+            <accessory>Watch Case 1</accessory>
+            <accessory>Watch Case 2</accessory>
+            <accessory>Watch Case 3</accessory>
+            <accessory>Watch Case 4</accessory>
+        </accessories>
+        </item>    
+
+    <item id="p01">
+        <name>iphone 6</name>
+        <price >299</price>
+        <discount>0.90</discount>
+        <accessories>
+            <accessory>Phone battery</accessory>
+            <accessory>Beats studio</accessory>
+            <accessory>Phone battery</accessory>
+            <accessory>Phone Case 1</accessory>
+            <accessory>Phone Case 2</accessory>
+            <accessory>Phone Case 3</accessory>
+            <accessory>Phone Case 4</accessory>
+        </accessories>
+        </item>
+</ProductCatalog>

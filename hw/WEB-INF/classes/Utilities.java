@@ -32,13 +32,13 @@ public class Utilities {
         str += "<section id=\"content\">";
         // str += "<article><h2>Welcome to Smart Portables</h2></article>";
         // str += "<article>##Content</article></section>";
-        str += "##CONTENT##";
-        str += "</section>";
+        // str += "##CONTENT##";
         return str;
     }
 
     public static String PrintSidebar(){
         String str = "";
+        str += "</section>";
         str += "<aside class=\"sidebar\">";
         str += "<ul>";
         //categories
@@ -46,7 +46,7 @@ public class Utilities {
         str += "<li><a href=\"#\">Phone</a></li>";
         str += "<li><a href=\"#\">Laptop</a></li>";
         str += "<li><a href=\"#\">HeadPhone</a></li>";
-        str += "<li><a href=\"#\">SmartWatch</a></li>";
+        str += "<li><a href=\"./WatchServlet\">SmartWatch</a></li>";
         str += "<li><a href=\"#\">Speakers</a></li>";
         str += "<li><a href=\"#\">External Storage</a></li></ul></li>";
         //search site
@@ -107,6 +107,22 @@ public class Utilities {
         str += "</table></form></center>";
         return str;
     }
+
+    public static String PrintProductTable(){
+        String str = "";
+        str += "<article><h2>Product List</h2></article>";
+        str += "<article class=\"expanded\"><table><tr>";
+        str += "<td align=\"\">Name</td>";
+        str += "<td align=\"\">Price</td>";
+        str += "<td align=\"\">Discount</td>";
+        str += "<td align=\"\">Rebate</td>";
+        str += "<td align=\"\">Stock</td></tr>";
+
+
+        return str;
+    }
+
+
 
     public static HashMap<String, User> getAllUsers() {
         return users;
