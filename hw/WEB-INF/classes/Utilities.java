@@ -7,53 +7,8 @@ import javax.servlet.http.*;
 
 public class Utilities {
     public static final String TOMCAT_HOME = "/Users/junyipeng/apache-tomcat-7.0.34/webapps/hw/";
-    // private HttpServletRequest request;
-    // private HttpServletResponse response;
-    // PrintWriter out = response.getWriter();;
+    private static HashMap<String, User> users = new HashMap<String, User>();
 
-    public static String printHtml(String file) {
-        String result = HtmlToString(file);
-        
-        // if(file == "Header.html"){
-        //     if(session.getAttribute("username")!=null){
-        //         String username = session.getAttribute("username").toString();
-        //         username = Character.toUpperCase(username.charAt(0))+username.substring(1);
-        //         result = result
-        //                 + "<li><a>Hello,"+username+"</a></li>"
-        //                 + "<li><a href = 'Account'>Account</a></li>"
-        //                 +"<li><a href= 'Logout'>Logout</a></li>";
-        //     }
-        //     else
-        //         result = result + "<li><a href= 'Login'><Login></a></li>";
-        //     result = result 
-        //             + "<li><a href = 'Cart'>Cart("+CartCount()+")</a></li></ul></div></div><div id='page'>"
-        //     pw.print(result);
-        // }else
-            // out.print(result);
-        if (file == "Content.html"){
-            result = result.replace("##CONTENT##","HelloWorld");
-            System.out.println("worked");
-        }
-        return result;
-    }
-
-    
-    public static String HtmlToString(String file) {
-        StringBuilder contentBuilder = new StringBuilder();
-        try {
-            BufferedReader in = new BufferedReader(new FileReader(TOMCAT_HOME + file));
-            String str;
-            while ((str = in.readLine()) != null) {
-                contentBuilder.append(str + "\r\n");
-            }
-            in.close();
-        } catch (Exception e) {
-            return "Error: unable to read HTML file " + file;
-        }
-        
-        return contentBuilder.toString();
-    }
-    
     public static String PrintHeader(){
         String str = "";
         str += "<!doctype html><html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />";
@@ -63,8 +18,7 @@ public class Utilities {
         str += "<body><div id=\"container\">";
         str += "<header><div class=\"width\"><h1><a href=\"./Home\">Smart<span>Portables</span></a></h1></div></header>";
         str += "<nav><div class=\"width\"><ul><li class=\"start selected\"><a href=\"./Home\">Home</a></li>";
-        str += "<li class=\"\"><a href=\"#\">Products</a></li>";
-        str += "<li class=\"end\"><a href=\"#\">Contact</a></li>";
+        str += "<li class=\"\"><a href=\"#\">Categories</a></li>";
 
     
         return str;
@@ -153,6 +107,11 @@ public class Utilities {
         str += "</table></form></center>";
         return str;
     }
+
+    public static HashMap<String, User> getAllUsers() {
+        return users;
+    }
+
 
 
 }

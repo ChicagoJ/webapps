@@ -27,7 +27,4 @@ public class User {
 		return(level);
 	}
 
-	// public static void main(String[] args) {
-	// 	System.out.println("Hello");
-	// }
 }

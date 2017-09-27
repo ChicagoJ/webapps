@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 
 public class SignupServlet extends HttpServlet {
    
-    protected Map<String, User> users = new HashMap();
+    private Map<String, User> users = Utilities.getAllUsers();
  
     // public void init() {
     //             User test = new User("test","TEST",0);
@@ -36,15 +36,22 @@ public class SignupServlet extends HttpServlet {
 
         if(userid != null &&
             password != null && repassword != null) {
-            if (!password.equals(repassword)){
-                showPage(response,"Sign up Failure! Twice passwords are not the same!");
-            }
+            if(!users.containsKey(userid)){
+                if (!password.equals(repassword)){
+                    showPage(response,"Sign up Failure! Twice passwords are not the same!");
+                }
+                else {
+                    showPage(response,"Sign up Successed! Enjoy Your time at Smart Portables!");
+                    User newUser = new User(userid, password, 0);
+                    users.put(userid,newUser);
+                }                
+            } 
             else {
-                showPage(response,"Sign up Successed! Enjoy Your time at Smart Portables!");
-                User newUser = new User(userid, password, 0);
-                users.put(userid,newUser);
-                session.setAttribute("users", newUser);
+                showPage(response, "Sign up Failure! User already exits");
             }
+        } 
+        else {
+            showPage(response,"Sign up Failure! You must supply a username and password");
         }
 
     } 
@@ -60,7 +67,7 @@ public class SignupServlet extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
         out.println("<h2>" + message + "</h2>");
-        out.println("<li><a href=\"./Home#\">Home</a></li>");
+        out.println("<li><a href=\"./Home\">Home</a></li>");
         out.println("</body>");
         out.println("</html>");
         out.close();

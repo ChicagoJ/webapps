@@ -5,13 +5,15 @@ import javax.servlet.http.*;
 
 public class LoginServlet extends HttpServlet {
    
-    protected Map<String, User> users = new HashMap();
+    private Map<String, User> users = Utilities.getAllUsers();
  
     public void init() {
-                User test = new User("test","TEST",0);
+                User test = new User("test","TEST",2);
                 users.put("test", test);
                 User test1 = new User("test1","TEST",0);
-                users.put("test1", test1);    
+                users.put("test1", test1);
+                User sales = new User("sales","111",1);
+                users.put("sales",sales);   
             }
 
 

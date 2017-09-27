@@ -5,12 +5,11 @@ import javax.servlet.http.*;
 
 
 public class Home extends HttpServlet {
-
-	    private String NOTLOGIN = "<li class=\"right\"><a href=\"./Login.html\">Login</a></li>";
-      	private String NOTSIGNUP = "<li class=\"right\"><a href=\"./Registration.html\">Signup</a></li>";
-		private String LOGIN = "<li class=\"right\"><a href=\"#\">Hi ";
-		private String LOGOUT = "<li class=\"right\"><a href=\"./LogoutServlet\">Logout</a></li>";
-		private String CONTENT = "<article><h2>Welcome to Smart Portables</h2></article><article class=\"expanded\">Happy shoping at Smart Portables!</article>";
+		 String PRODUCT = "<li class=\"\"><a href=\"#\">Products</a></li>";
+	     String NOTLOGIN = "<li class=\"right\"><a href=\"./Login.html\">Login</a></li>";
+      	 String NOTSIGNUP = "<li class=\"right\"><a href=\"./Registration.html\">Signup</a></li>";
+		 String LOGOUT = "<li class=\"right\"><a href=\"./LogoutServlet\">Logout</a></li>";
+		 String CONTENT = "<article><h2>Welcome to Smart Portables</h2></article><article class=\"expanded\">Happy shoping at Smart Portables!</article>";
 
 
             protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,9 +28,16 @@ public class Home extends HttpServlet {
                         //login or notlogin in
                         if (users!= null){
                         	System.out.println(users.getUserId() + "Login");
-                        	LOGIN += (String)users.getUserId();
-                        	hd += LOGIN;
+                        	hd += "<li style=\"float:right\"><a href=\"#\">Hi ";
+                        	hd += users.getUserId();
+                        	if (users.getLevel() >= 1){
+                        		hd += PRODUCT;
+                        	}
+                        	if (users.getLevel() == 1){
+                        		hd += "<li class=\"right\"><a href=\"./Registration.html\">creat account</a></li>";
+                        	}
                         	hd += LOGOUT;
+
                         } else {
                      //    	//add signup and login tag
 	                        hd += NOTSIGNUP;
