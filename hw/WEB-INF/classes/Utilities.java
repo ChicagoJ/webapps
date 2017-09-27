@@ -77,7 +77,9 @@ public class Utilities {
         str += "<div id=\"body\" class=\"width\">";
         str += "<section id=\"content\">";
         // str += "<article><h2>Welcome to Smart Portables</h2></article>";
-        str += "<article class=\"expand\">##Content</article></section>";
+        // str += "<article>##Content</article></section>";
+        str += "##CONTENT##";
+        str += "</section>";
         return str;
     }
 
@@ -128,12 +130,26 @@ public class Utilities {
 
     public static String PrintLoginForm(){
         String str = "";
+        str += "<article><h4>Login</h4>";
         str += "<center><form method=\"post\" action=\"./LoginServlet\">";
-        str += "<h4>Enter your User ID and Password and click Login</h4>";
         str += "<table cellpadding='2' cellspacing='1'>";
         str += "<tr><td>User ID</td><td><input type=\"TEXT\" size=\"15\" name=\"userid\"></input></td></tr>";
-        str += "<tr><td>Password</td><td><input type\"PASSWORD\" size=\"15\" name=\"password\"/></td></tr>";
+        str += "\n<tr><td>Password</td><td><input type\"password\" size=\"15\" name=\"password\"/></td></tr>";
         str += "<tr><td colspan='2'><center><input type=\"submit\" value=\"Login\" /></center></td></tr>";
+        str += "</table></form></center></article>";
+        return str;
+    }
+
+    public static String PrintSignupForm(){
+        String str = "";
+        str += "<h4>Registration</h4>";
+        str += "<center><form method=\"post\" action=\"./SignupServlet\">";
+
+        str += "<table cellpadding='2' cellspacing='1'>";
+        str += "<tr><td>User ID</td><td><input type=\"TEXT\" size=\"15\" name=\"userid\"></input></td></tr>";
+        str += "\n<tr><td>Password</td><td><input type\"PASSWORD\" size=\"15\" name=\"password\"/></td></tr>";
+        str += "<tr><td>Re-enter Password</td><td><input type\"PASSWORD\" size=\"15\" name=\"repassword\"/></td></tr>";
+        str += "<tr><td colspan='2'><center><input type=\"submit\" value=\"Signup\" /></center></td></tr>";
         str += "</table></form></center>";
         return str;
     }

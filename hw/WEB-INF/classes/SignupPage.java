@@ -4,11 +4,11 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 
-public class LoginPage extends HttpServlet {
+public class SignupPage extends HttpServlet {
 
 	private String TAGLOGIN = "<li class=\"right\"><a href=\"./LoginPage\">Login</a></li>";
       private String TAGSIGNUP = "<li class=\"right\"><a href=\"./SignupPage\">Signup</a></li>";
-      private String LoginForm = Utilities.PrintLoginForm();
+      private String SignupForm = Utilities.PrintSignupForm();
 
 
 
@@ -27,7 +27,7 @@ public class LoginPage extends HttpServlet {
                         hd += TAGLOGIN;
 
                         //Write the real content into content
-                        ct = ct.replace("##CONTENT##", LoginForm);
+                        ct = ct.replace("##Content", SignupForm);
 
                         pw.print(hd);
                         pw.print(ct);
