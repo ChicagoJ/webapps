@@ -12,9 +12,11 @@ public class CartPage extends HttpServlet {
 
   public void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
     HttpSession session = request.getSession();
+    User users = (User)session.getAttribute("users");
     ShoppingCart cart;
     synchronized(session) {
       cart = (ShoppingCart)session.getAttribute("shoppingCart");
+      System.out.println("the cart is " + cart);
       // New visitors get a fresh shopping cart.
       // Previous visitors keep using their existing cart.
       if (cart == null) {
@@ -46,7 +48,7 @@ public class CartPage extends HttpServlet {
           }
           System.out.println("the real # is " + numItems);
           cart.setNumOrdered(itemID, numItems);
-          System.out.println(cart);
+          System.out.println(cart.getItemsOrdered().size());
         }
       }
     }
@@ -64,75 +66,84 @@ public class CartPage extends HttpServlet {
                 "<BODY BGCOLOR=\"#FDF5E6\">\n" +
                 "<H1 ALIGN=\"CENTER\">" + title + "</H1>");
     synchronized(session) {
-      List itemsOrdered = cart.getItemsOrdered();
-      System.out.println("itemsOrdered is " + itemsOrdered);
-      if (itemsOrdered.size() == 0) {
-        out.println("<H2><I>No items in your cart...</I></H2>");
-      } else {
-        // If there is at least one item in cart, show table
-        // of items ordered.
-        out.println
-          ("<TABLE BORDER=1 ALIGN=\"CENTER\">\n" +
-           "<TR BGCOLOR=\"#FFAD00\">\n" +
-           "  <TH>Name<TH>Discount\n" +
-           "  <TH>Unit Cost<TH>Number<TH>Total Cost");
-        ItemOrder order;
-        // Rounds to two decimal places, inserts dollar
-        // sign (or other currency symbol), etc., as
-        // appropriate in current Locale.
-        NumberFormat formatter =
-          NumberFormat.getCurrencyInstance();
-        // For each entry in shopping cart, make
-        // table row showing ID, description, per-item
-        // cost, number ordered, and total cost.
-        // Put number ordered in textfield that user
-        // can change, with "Update Order" button next
-        // to it, which resubmits to this same page
-        // but specifying a different number of items.
-        for(int i=0; i<itemsOrdered.size(); i++) {
-          order = (ItemOrder)itemsOrdered.get(i);
+      if(users != null){
+        List itemsOrdered = cart.getItemsOrdered();
+        if (itemsOrdered.size() == 0) {
+          out.println("<H2><I>No items in your cart...</I></H2>");
+        } else {
+          // If there is at least one item in cart, show table
+          // of items ordered.
           out.println
-            ("<TR>\n" +
-             "  <TD>" + order.getItemName() + "\n" +
-             "  <TD>" + order.getDiscount() + "\n" +
-             "  <TD>" +
-             formatter.format(order.getCost()) + "\n" +
-             "  <TD>" +
-             "<FORM action=\"./CartPage\">\n" +  // Submit to current URL
-             "<INPUT TYPE=\"HIDDEN\" NAME=\"ItemId\"\n" +
-             "       VALUE=\"" + order.getItemId() + "\">\n" +
-             "<INPUT TYPE=\"TEXT\" NAME=\"numItems\"\n" +
-             "       SIZE=3 VALUE=\"" + 
-             order.getNumItems() + "\">\n" +
-             "<SMALL>\n" +
-             "<INPUT TYPE=\"SUBMIT\"\n "+
-             "       VALUE=\"Update Order\">\n" +
-             "</SMALL>\n" +
-             "</FORM>\n" +
-             "  <TD>" +
-             formatter.format(order.getTotalCost()));
-            System.out.println(order.getNumItems());
-            System.out.println(order.getTotalCost());
+            ("<CENTER><H2>Please update all your item before checkout</H2></CENTER><TABLE BORDER=1 ALIGN=\"CENTER\">\n" +
+             "<TR BGCOLOR=\"#FFAD00\">\n" +
+             "  <TH>Name<TH>Discount\n" +
+             "  <TH>Unit Cost<TH>Number<TH>Total Cost");
+          ItemOrder order;
+          // Rounds to two decimal places, inserts dollar
+          // sign (or other currency symbol), etc., as
+          // appropriate in current Locale.
+          NumberFormat formatter =
+            NumberFormat.getCurrencyInstance();
+          // For each entry in shopping cart, make
+          // table row showing ID, description, per-item
+          // cost, number ordered, and total cost.
+          // Put number ordered in textfield that user
+          // can change, with "Update Order" button next
+          // to it, which resubmits to this same page
+          // but specifying a different number of items.
+          int cnt = 0;
+          for(int i=0; i<itemsOrdered.size(); i++) {
+            order = (ItemOrder)itemsOrdered.get(i);
+            cnt += order.getNumItems();
+            out.println
+              ("<TR>\n" +
+               "  <TD>" + order.getItemName() + "\n" +
+               "  <TD>" + order.getDiscount() + "\n" +
+               "  <TD>" +
+               formatter.format(order.getCost()) + "\n" +
+               "  <TD>" +
+               "<FORM >\n" +  // Submit to current URL
+               "<INPUT TYPE=\"HIDDEN\" NAME=\"ItemId\"\n" +
+               "       VALUE=\"" + order.getItemId() + "\">\n" +
+               "<INPUT TYPE=\"TEXT\" NAME=\"numItems\"\n" +
+               "       SIZE=3 VALUE=\"" + 
+               order.getNumItems() + "\">\n" +
+               "<SMALL>\n" +
+               "<INPUT TYPE=\"SUBMIT\"\n "+
+               "       VALUE=\"Update Order\">\n" +
+               "</SMALL>\n" +
+               "</FORM>\n" +
+               "  <TD>" +
+              formatter.format(order.getTotalCost()));
+              System.out.println(order.getNumItems());
+              System.out.println(order.getTotalCost());
+          }
+          // System.out.println("the total count is " + cnt);
+          // session.setAttribute("itemcnt",cnt);
+          String checkoutURL =
+            response.encodeURL("./Checkout.html");
+          // "Proceed to Checkout" button below table
+          out.println
+            ("</TABLE>\n" +
+             "<FORM ACTION=\"" + checkoutURL + "\">\n" +
+             "<BIG><CENTER>\n" +
+             "<INPUT TYPE=\"SUBMIT\"\n" +
+             "       VALUE=\"Proceed to Checkout\">\n" +
+             "</CENTER></BIG></FORM>");
+
         }
-        String checkoutURL =
-          response.encodeURL("/csj/Checkout.htm");
-        // "Proceed to Checkout" button below table
-        out.println
-          ("</TABLE>\n" +
-           "<li><FORM ACTION=\"" + checkoutURL + "\">\n" +
-           "<BIG><CENTER>\n" +
-           "<INPUT TYPE=\"SUBMIT\"\n" +
-           "       VALUE=\"Proceed to Checkout\">\n" +
-           "</CENTER></BIG></FORM>"+
-           "<a href=\"./WatchServlet\">\n" +
-           "<BIG><CENTER>\n" +
-           "<INPUT TYPE=\"SUBMIT\"\n" +
-           "VALUE=\"Continute shopping\">\n" +
-           "</a></CENTER></BIG></li>"
-           +
-           "");
-      }
-      out.println("</BODY></HTML>");
+        out.println("<BIG><CENTER>\n<a href=\"./WatchServlet\">\n" +
+             "Continute shopping\"\n" +
+             "</a></CENTER></BIG>");
+        out.println("</BODY></HTML>");
+      } else{
+
+
+        out.println("<h2>Login first</h2>");
+        out.println("<li><a href=\"./Home\">Home</a></li>");
+        out.println("</body>");
+        out.println("</html>");
+        out.close();      }
     }
   }
 }

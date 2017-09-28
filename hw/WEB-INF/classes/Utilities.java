@@ -19,7 +19,7 @@ public class Utilities {
         str += "<header><div class=\"width\"><h1><a href=\"./Home\">Smart<span>Portables</span></a></h1></div></header>";
         str += "<nav><div class=\"width\"><ul><li class=\"start selected\"><a href=\"./Home\">Home</a></li>";
         str += "<li class=\"\"><a href=\"#\">Categories</a></li>";
-        str += "<li class=\"\"><a href=\"./CartPage\">Cart</a></li>";
+        str += "<li style=\"float:right\"><a href=\"./CartPage\">Cart</a></li>";
 
     
         return str;

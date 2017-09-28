@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
         java.io.PrintWriter out = response.getWriter();
         out.println("<html>");
         out.println("<head>");
-        out.println("<title>Login Servlet Result</title>");  
+        out.println("<title>Result</title>");  
         out.println("</head>");
         out.println("<body>");
         out.println("<h2>" + message + "</h2>");

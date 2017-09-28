@@ -6,7 +6,7 @@ import java.util.*;
 public class ShoppingCart {
   
 
-
+  private int cnt;
   private ArrayList itemsOrdered;
 
   // private Map<String, Item> items = (Map)session.
@@ -71,5 +71,7 @@ public class ShoppingCart {
       new ItemOrder(SaxPaserDataStore.getItem(itemID));
     itemsOrdered.add(newOrder);
   }
+
+
 }
     

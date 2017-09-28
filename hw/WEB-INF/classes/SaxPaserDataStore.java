@@ -108,7 +108,7 @@ public class SaxPaserDataStore extends DefaultHandler {
 
     public static Map<String, Item> getItems(String XmlFileName) {
         new SaxPaserDataStore(XmlFileName);
-        System.out.println(items);
+        // System.out.println(items);
         return items;
     }
 
