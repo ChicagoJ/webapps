@@ -32,8 +32,8 @@ public class ProductServlet extends HttpServlet {
 
                         //login or notlogin in
                         if (users!= null){
-                              System.out.println("Products Page");
-                              System.out.println(items);
+                              // System.out.println("Products Page");
+                              // System.out.println(items);
                               hd += "<li style=\"float:right\"><a href=\"#\">Hi ";
                               hd += users.getUserId();
                               if (users.getLevel() >= 1){
@@ -57,6 +57,7 @@ public class ProductServlet extends HttpServlet {
                         pw.print(hd);
                         //Write the real content into content
                         String CONTENT = Utilities.PrintProductTable();
+                        ct += "<article><h2>Product</h2></article>";
                         ct += CONTENT;
                         pw.println(ct);                     
                         for (Item item : items.values()) {

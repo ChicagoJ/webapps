@@ -13,7 +13,6 @@ public class LoginPage extends HttpServlet {
 
 
             protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-                        response.setContentType("text/html");
                         PrintWriter pw = response.getWriter();
                        
 
@@ -27,8 +26,8 @@ public class LoginPage extends HttpServlet {
                         hd += TAGLOGIN;
 
                         //Write the real content into content
-                        ct = ct.replace("##CONTENT##", LoginForm);
-
+                        ct += LoginForm;
+                        response.setContentType("text/html");
                         pw.print(hd);
                         pw.print(ct);
                         pw.print(sb);

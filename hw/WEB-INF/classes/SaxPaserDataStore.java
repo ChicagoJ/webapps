@@ -80,7 +80,7 @@ public class SaxPaserDataStore extends DefaultHandler {
 	    return;
         }
         if(element.equalsIgnoreCase("price")){
-            item.setPrice(Integer.parseInt(elementValueRead));
+            item.setPrice(Double.parseDouble(elementValueRead));
         return;
         }
         if(element.equalsIgnoreCase("discount")){
@@ -88,7 +88,7 @@ public class SaxPaserDataStore extends DefaultHandler {
         return;
         }        
         if(element.equalsIgnoreCase("stock")){
-            item.setStock(Double.parseDouble(elementValueRead));
+            item.setStock(Integer.parseInt(elementValueRead));
         return;
         }
         if(element.equalsIgnoreCase("rebate")){
@@ -112,6 +112,17 @@ public class SaxPaserDataStore extends DefaultHandler {
         return items;
     }
 
+    public static Item getItem(String itemID) {
+        if (itemID == null) {
+            return(null);
+        }
+        for (Item item : items.values()){
+            if(itemID.equals(item.getItemId())){
+                return(item);
+            }
+        }
+        return(null);
+    }
 
 
     // public static void main(String[] args) {

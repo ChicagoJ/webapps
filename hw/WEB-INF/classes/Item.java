@@ -5,10 +5,10 @@ public class Item {
 	private double price;
 	private double discount;
 	private double rebates;
-	private double stocks;
+	private int stocks;
 	private List<String> accessories = new ArrayList<String>();
 
-	public Item(String iID, String iNa, double co, double dis, double reb, double sto){
+	public Item(String iID, String iNa, double co, double dis, double reb, int sto){
 		setItemId(iID);
 		setItemName(iNa);
 		setPrice(co);
@@ -56,10 +56,12 @@ public class Item {
 	public void setAccessories(List<String> accessories) {
 		this.accessories = accessories;
 	}
-	public double getStock(){
+	public int getStock(){
 		return(stocks);
 	}
-	public void setStock(double sto){
+	public void setStock(int sto){
 		this.stocks = sto;
-	}	
+	}
+
+
 }

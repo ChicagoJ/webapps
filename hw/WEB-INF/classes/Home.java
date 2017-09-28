@@ -6,7 +6,7 @@ import javax.servlet.http.*;
 
 public class Home extends HttpServlet {
 		 String PRODUCT = "<li class=\"\"><a href=\"./ProductServlet\">Products</a></li>";
-	     String NOTLOGIN = "<li class=\"right\"><a href=\"./Login.html\">Login</a></li>";
+	       String NOTLOGIN = "<li class=\"right\"><a href=\"./Login.html\">Login</a></li>";
       	 String NOTSIGNUP = "<li class=\"right\"><a href=\"./Registration.html\">Signup</a></li>";
 		 String LOGOUT = "<li class=\"right\"><a href=\"./LogoutServlet\">Logout</a></li>";
 		 String CONTENT = "<article><h2>Welcome to Smart Portables</h2></article><article class=\"expanded\">Happy shoping at Smart Portables!</article>";

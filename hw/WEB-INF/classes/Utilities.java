@@ -19,6 +19,7 @@ public class Utilities {
         str += "<header><div class=\"width\"><h1><a href=\"./Home\">Smart<span>Portables</span></a></h1></div></header>";
         str += "<nav><div class=\"width\"><ul><li class=\"start selected\"><a href=\"./Home\">Home</a></li>";
         str += "<li class=\"\"><a href=\"#\">Categories</a></li>";
+        str += "<li class=\"\"><a href=\"./CartPage\">Cart</a></li>";
 
     
         return str;
@@ -87,9 +88,9 @@ public class Utilities {
         str += "<article><h4>Login</h4>";
         str += "<center><form method=\"post\" action=\"./LoginServlet\">";
         str += "<table cellpadding='2' cellspacing='1'>";
-        str += "<tr><td>User ID</td><td><input type=\"TEXT\" size=\"15\" name=\"userid\"></input></td></tr>";
-        str += "\n<tr><td>Password</td><td><input type\"password\" size=\"15\" name=\"password\"/></td></tr>";
-        str += "<tr><td colspan='2'><center><input type=\"submit\" value=\"Login\" /></center></td></tr>";
+        str += "<tr><td>User ID</td><td><input type=\"TEXT\" size=\"15\" name=\"userid\" style=\"background-color:#FFF\"></input></td></tr>";
+        str += "\n<tr><td>Password</td><td><input type\"password\" size=\"15\" name=\"password\"style=\"background-color:#FFF\"/></td></tr>";
+        str += "<tr><td colspan='2'><center><input type=\"submit\" value=\"Login\"style=\"background-color:#FFF\" /></center></td></tr>";
         str += "</table></form></center></article>";
         return str;
     }
@@ -110,7 +111,6 @@ public class Utilities {
 
     public static String PrintProductTable(){
         String str = "";
-        str += "<article><h2>Product List</h2></article>";
         str += "<article class=\"expanded\"><table><tr>";
         str += "<td align=\"\">Name</td>";
         str += "<td align=\"\">Price</td>";

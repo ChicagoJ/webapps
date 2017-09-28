@@ -32,8 +32,8 @@ public class WatchServlet extends HttpServlet {
 
                         //login or notlogin in
                         if (users!= null){
-                              System.out.println("Products Page");
-                              System.out.println(items);
+                              // System.out.println(items);
+                              // System.out.println("Products Page");
                               hd += "<li style=\"float:right\"><a href=\"#\">Hi ";
                               hd += users.getUserId();
                               if (users.getLevel() >= 1){
@@ -55,22 +55,30 @@ public class WatchServlet extends HttpServlet {
 
 
                         pw.print(hd);
-                        //Write the real content into content
-                        String CONTENT = Utilities.PrintProductTable();
-                        ct += CONTENT;
-                        pw.println(ct);                     
-                        for (Item item : items.values()) {
-                              if (item.getItemId().charAt(0) == 'w') {
+                        ct += "<article><h2>SmartWatch and Accessories</h2></article>";
+
+                        pw.println(ct);
+                        pw.println("<article class=\"expanded\"><table>");
+                        for (Item item : items.values()){
+                              if (item.getItemId().charAt(0) == 'w'){
                                     pw.println("<tr>");
-                                    pw.println("<td align=\"\">"+ item.getItemName() + "</td>");
-                                    pw.println("<td align=\"\">" + item.getPrice() + "</td>");
-                                    pw.println("<td align=\"\">"+ item.getDiscount() +"</td>");
-                                    pw.println("<td align=\"\">"+item.getRebates() +"</td>");
-                                    pw.println("<td align=\"\">"+item.getStock()+"</td></tr>");                         
+                                    pw.println("<td>" + item.getItemName() + "</td>");
+                                    pw.println("<td> Price: $" + item.getPrice() + "<br><br>");
+                                    pw.println("Discount: " + item.getDiscount() + "<br><br>");
+                                    
+                                    pw.println("<form action=\"./CartPage\">");
+                                    pw.println("<input type=\"hidden\" name=\"method\" value=\"addToCart\">");
+                                    pw.println("<input type=\"hidden\" name=\"ItemId\" value=\""+ item.getItemId() + "\">");
+                                    pw.println("<input type=\"hidden\" name=\"ItemName\" value=\""+ item.getItemName() + "\">");
+                                    pw.println("<input type=\"hidden\" name=\"Stocks\" value=\""+ item.getStock() + "\">");
+                                    pw.println("<input class=\"submit-button\" type=\"submit\" value=\"Add to cart\" style=\"background-color:red\">");
+                                    pw.println("</form></td></tr>");
+
                               }
-                                                             
-                         }
+
+                        }
                         pw.println("</table></article>");
+
                         pw.println(sb);
                         pw.println(ft);
             }
