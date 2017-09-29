@@ -74,6 +74,8 @@ public class Home extends HttpServlet {
                               hd += "<li style=\"float:right\"><a href=\"./CartPage\">Cart";
                               hd += "(" + numCart + ")";
                               hd +="</a></li>";
+                        }else{
+                              hd += "<li style=\"float:right\"><a href=\"./CartPage\">Cart</a></li>";
                         }                        
                         ct += CONTENT;
                         pw.print(hd);

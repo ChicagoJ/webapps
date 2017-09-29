@@ -40,8 +40,9 @@ public class WatchServlet extends HttpServlet {
                               hd += "<li style=\"float:right\"><a href=\"./CartPage\">Cart";
                               hd += "(" + numCart + ")";
                               hd +="</a></li>";
-                        }   
-                        //login or notlogin in
+                        }else{
+                              hd += "<li style=\"float:right\"><a href=\"./CartPage\">Cart</a></li>";
+                        }                          //login or notlogin in
                         if (users!= null){
                               // System.out.println(items);
                               // System.out.println("Products Page");

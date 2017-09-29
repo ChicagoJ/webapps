@@ -9,7 +9,6 @@ public class ShoppingCart {
   private int cnt;
   private ArrayList itemsOrdered;
 
-  // private Map<String, Item> items = (Map)session.
 
   /** Builds an empty shopping cart. */
   
@@ -83,6 +82,11 @@ public class ShoppingCart {
     }
     // }
     return total;
+  }
+
+  public void clearCart(){
+    itemsOrdered.clear();
+    System.out.println("if cart is clean, the content is :" + itemsOrdered);
   }
 
 }
