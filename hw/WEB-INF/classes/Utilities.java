@@ -113,6 +113,7 @@ public class Utilities {
     public static String PrintProductTable(){
         String str = "";
         str += "<article class=\"expanded\"><table><tr>";
+        str += "<td align=\"\">Id</td>";
         str += "<td align=\"\">Name</td>";
         str += "<td align=\"\">Price</td>";
         str += "<td align=\"\">Discount</td>";

@@ -8,10 +8,10 @@ public class LoginServlet extends HttpServlet {
     private Map<String, User> users = Utilities.getAllUsers();
  
     public void init() {
-                User test = new User("test","TEST",2);
-                users.put("test", test);
-                User test1 = new User("test1","TEST",0);
-                users.put("test1", test1);
+                User manager = new User("manager","111",2);
+                users.put("manager", manager);
+                User Joey = new User("Joey","111",0);
+                users.put("Joey", Joey);
                 User sales = new User("sales","111",1);
                 users.put("sales",sales);   
             }

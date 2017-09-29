@@ -132,8 +132,17 @@ public class SaxPaserDataStore extends DefaultHandler {
         items.put(item.getItemId(),item);
         return true;
     }
+    public static boolean RemoveItem(String ItemId){
 
+        items.remove(ItemId);
+        return true;
+    }
+    public static boolean UpdateItem(Item item){
 
+        items.remove(item.getItemId());
+        items.put(item.getItemId(),item);
+        return true;
+    }
     // public static void main(String[] args) {
     //     getItems("ProductCatalog.xml");
 

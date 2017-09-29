@@ -28,6 +28,17 @@
      Smart Portables
   </description>
 
+<!--   <servlet>
+    <servlet-name>Startup</servlet-name>
+    <servlet-class>Startup</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>Startup</servlet-name>
+    <url-pattern>/Startup</url-pattern>
+  </servlet-mapping> -->
+
   <welcome-file-list>  
    <welcome-file>Home</welcome-file>  
   </welcome-file-list> 
@@ -101,10 +112,154 @@
     <servlet-name>WatchServlet</servlet-name>
     <url-pattern>/WatchServlet</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>PhoneServlet</servlet-name>
+    <servlet-class>PhoneServlet</servlet-class>
+  </servlet>
 
+  <servlet-mapping>
+    <servlet-name>PhoneServlet</servlet-name>
+    <url-pattern>/PhoneServlet</url-pattern>
+  </servlet-mapping>
 
+  <servlet>
+    <servlet-name>LaptopServlet</servlet-name>
+    <servlet-class>LaptopServlet</servlet-class>
+  </servlet>
 
+  <servlet-mapping>
+    <servlet-name>LaptopServlet</servlet-name>
+    <url-pattern>/LaptopServlet</url-pattern>
+  </servlet-mapping>
 
+  <servlet>
+    <servlet-name>HeadPhoneServlet</servlet-name>
+    <servlet-class>HeadPhoneServlet</servlet-class>
+  </servlet>
 
+  <servlet-mapping>
+    <servlet-name>HeadPhoneServlet</servlet-name>
+    <url-pattern>/HeadPhoneServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>SpeakersServlet</servlet-name>
+    <servlet-class>SpeakersServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SpeakersServlet</servlet-name>
+    <url-pattern>/SpeakersServlet</url-pattern>
+  </servlet-mapping>  
+
+  <servlet>
+    <servlet-name>EStorageServlet</servlet-name>
+    <servlet-class>EStorageServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>EStorageServlet</servlet-name>
+    <url-pattern>/EStorageServlet</url-pattern>
+  </servlet-mapping>  
+
+  <servlet>
+    <servlet-name>InsuranceServlet</servlet-name>
+    <servlet-class>InsuranceServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>InsuranceServlet</servlet-name>
+    <url-pattern>/InsuranceServlet</url-pattern>
+  </servlet-mapping> 
+
+  <servlet>
+    <servlet-name>ProductServlet</servlet-name>
+    <servlet-class>ProductServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ProductServlet</servlet-name>
+    <url-pattern>/ProductServlet</url-pattern>
+  </servlet-mapping>  
+
+  <servlet>
+    <servlet-name>CartPage</servlet-name>
+    <servlet-class>CartPage</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>CartPage</servlet-name>
+    <url-pattern>/CartPage</url-pattern>
+  </servlet-mapping>  
+
+  <servlet>
+    <servlet-name>CheckoutPage</servlet-name>
+    <servlet-class>CheckoutPage</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>CheckoutPage</servlet-name>
+    <url-pattern>/CheckoutPage</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>CheckoutServlet</servlet-name>
+    <servlet-class>CheckoutServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>CheckoutServlet</servlet-name>
+    <url-pattern>/CheckoutServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>OrdersServlet</servlet-name>
+    <servlet-class>OrdersServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>OrdersServlet</servlet-name>
+    <url-pattern>/OrdersServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>CancelOrder</servlet-name>
+    <servlet-class>CancelOrder</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>CancelOrder</servlet-name>
+    <url-pattern>/CancelOrder</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ManageServlet</servlet-name>
+    <servlet-class>ManageServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ManageServlet</servlet-name>
+    <url-pattern>/ManageServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>RemoveItemServlet</servlet-name>
+    <servlet-class>RemoveItemServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>RemoveItemServlet</servlet-name>
+    <url-pattern>/RemoveItemServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>UpdateItemServlet</servlet-name>
+    <servlet-class>UpdateItemServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UpdateItemServlet</servlet-name>
+    <url-pattern>/UpdateItemServlet</url-pattern>
+  </servlet-mapping>
 
 </web-app>
