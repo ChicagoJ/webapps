@@ -28,6 +28,7 @@ public class SaxPaserDataStore extends DefaultHandler {
         this.XmlFileName = XmlFileName;
         // items 
         parseDocument();
+        // prettyPrint();
     }
 
 

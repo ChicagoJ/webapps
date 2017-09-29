@@ -59,16 +59,41 @@ public class ProductServlet extends HttpServlet {
                         String CONTENT = Utilities.PrintProductTable();
                         ct += "<article><h2>Product</h2></article>";
                         ct += CONTENT;
-                        pw.println(ct);                     
+                        pw.println(ct);
+                        int realnum;
+                        // int cnt = 0;                     
                         for (Item item : items.values()) {
+                              // if(request.getParameter("stocks")!= null && request.getParameter("ItemId") != null &&request.getParameter("ItemId").equals(item.getItemId())){
+                              //       realnum = Integer.parseInt(request.getParameter("stocks"));
+                              //       // if (cnt == 0){
+                              //       item.setStock(realnum);
+                              //       //       cnt ++;
+                              //       // } else{
+                              //       //       cnt = 0;
+                              //       // }
+                              // }
+                              
+                              // pw.println("<tr>");
+                              // pw.println("<td align=\"\">"+ item.getItemName() + "</td>");
+                              // pw.println("<td align=\"\">" + item.getPrice() + "</td>");
+                              // pw.println("<td align=\"\">"+ item.getDiscount() +"</td>");
+                              // pw.println("<td align=\"\">"+item.getRebates() +"</td>");
+                              // // pw.println("<td align=\"\">"+item.getStock()+"</td></tr>");
+                              // pw.println("<td align=\"\"><input type=\"text\" name=\"stocks\"size=3 value=\""+ item.getStock()+
+                              //       "\"><small><input type=\"submit\" value=\"update stocks\"></small>" +
+                              //       "<input type=\"hidden\" name=\"ItemId\" value=\"" + item.getItemId() + "\">" +
+                              //       "</td></tr>");
                               pw.println("<tr>");
-                              pw.println("<td align=\"\">"+ item.getItemName() + "</td>");
-                              pw.println("<td align=\"\">" + item.getPrice() + "</td>");
-                              pw.println("<td align=\"\">"+ item.getDiscount() +"</td>");
-                              pw.println("<td align=\"\">"+item.getRebates() +"</td>");
-                              pw.println("<td align=\"\">"+item.getStock()+"</td></tr>");
-                                                             
+                              pw.println("<td align=\"center\">" + item.getItemName() + "</td>");
+                              // out.println("<td>" + item.getTitle() + "</td>");
+                              pw.println("<td align=\"center\"><input id=\"Price\" class=\"" + item.getPrice() + "\" type=\"text\" size=\"6\" name=\"" + item.getItemId() + "\" value=\"" + String.format("%.2f", item.getPrice()) + "\"/></td>");
+                              pw.println("<td align=\"center\"><input id=\"Discount\" class=\"" + item.getDiscount() + "\" type=\"text\" size=\"3\" name=\"" + item.getItemId() + "\" value=\"" + item.getDiscount() + "\"/></td>");
+                              pw.println("<td align=\"center\"><input id=\"Rebate\" class=\"" + item.getRebates() + "\" type=\"text\" size=\"3\" name=\"" + item.getItemId() + "\" value=\"" + item.getRebates() + "\"/></td>");
+                              pw.println("<td align=\"center\"><input id=\"Stock\" class=\"" + item.getStock() + "\" type=\"text\" size=\"3\" name=\"" + item.getItemId() + "\" value=\"" + item.getStock() + "\"/></td></tr>");
+
                          }
+                        // session.removeAttribute("items");
+                        // session.setAttribute("items",items);
                         pw.println("</table></article>");
                         pw.println(sb);
                         pw.println(ft);

@@ -17,6 +17,7 @@ public class ShoppingCart {
     itemsOrdered = new ArrayList();
   }
 
+
   /** Returns List of ItemOrder entries giving
    *  Item and number ordered. Declared as List instead
    *  of ArrayList so that underlying implementation
@@ -72,6 +73,17 @@ public class ShoppingCart {
     itemsOrdered.add(newOrder);
   }
 
+  public int getItemNumber(){
+    ItemOrder order;
+    int total = 0;
+    // if (itemsOrdered != null){
+    for (int i=0; i<itemsOrdered.size();i++){
+      order = (ItemOrder)itemsOrdered.get(i);
+      total += order.getNumItems();
+    }
+    // }
+    return total;
+  }
 
 }
     

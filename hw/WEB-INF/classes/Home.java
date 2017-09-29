@@ -6,12 +6,12 @@ import javax.servlet.http.*;
 
 public class Home extends HttpServlet {
 		 String PRODUCT = "<li class=\"\"><a href=\"./ProductServlet\">Products</a></li>";
-	       String NOTLOGIN = "<li style=\"float:right\"><a href=\"./Login.html\">Login</a></li>";
-      	 String NOTSIGNUP = "<li style=\"float:right\"><a href=\"./Registration.html\">Signup</a></li>";
+	       String NOTLOGIN = "<li style=\"float:right\"><a href=\"./LoginPage\">Login</a></li>";
+      	 String NOTSIGNUP = "<li style=\"float:right\"><a href=\"./SignupPage\">Signup</a></li>";
 		 String LOGOUT = "<li style=\"float:right\"><a href=\"./LogoutServlet\">Logout</a></li>";
 		 String CONTENT = "<article><h2>Welcome to Smart Portables</h2></article><article class=\"expanded\">Happy shoping at Smart Portables!</article>";
 		 private static Map<String, Item> items;
-
+             int numCart;
 
             protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
                         response.setContentType("text/html");
@@ -20,9 +20,8 @@ public class Home extends HttpServlet {
                         //get user infor
                         User users = (User)session.getAttribute("users");
                         // get cart info & cart num info
-                        ShoppingCart cart = (ShoppingCart)session.getAttribute("shoppingCart");
-                        // System.out.println("num of item in cart: " + cart.getCnt());
-                        // int numCart = (int)session.getAttribute("numItems");
+
+
                         //set product infor
                         items = SaxPaserDataStore.getItems(request.getServletContext().getRealPath("/") + "ProductCatalog.xml");
 				        // for (Item item: items.values()) {
@@ -63,11 +62,19 @@ public class Home extends HttpServlet {
                     	}
                         //Write the real content into content
                         // ct = ct.replace("##CONTENT##", CONTENT);
-                        // if (numItems != 0){
-                              // hd += "<li style=\"float:right\"><a href=\"./CartPage\">Cart";
-                              // hd += "(" + numItems + ")";
-                              // hd +="</a></li>";
-                        // }                        
+                        ShoppingCart cart = (ShoppingCart)session.getAttribute("shoppingCart");
+                        
+                        if (cart != null){
+                              System.out.println("num of item in cart: " + cart.getItemNumber());
+                              numCart = cart.getItemNumber();
+                        } else{
+                              numCart = 0;
+                        }
+                        if (numCart != 0){
+                              hd += "<li style=\"float:right\"><a href=\"./CartPage\">Cart";
+                              hd += "(" + numCart + ")";
+                              hd +="</a></li>";
+                        }                        
                         ct += CONTENT;
                         pw.print(hd);
                         pw.print(ct);

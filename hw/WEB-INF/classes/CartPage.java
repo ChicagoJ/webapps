@@ -92,9 +92,13 @@ public class CartPage extends HttpServlet {
           // to it, which resubmits to this same page
           // but specifying a different number of items.
           int cnt = 0;
+          double totalcost = 0;
           for(int i=0; i<itemsOrdered.size(); i++) {
             order = (ItemOrder)itemsOrdered.get(i);
-            cnt += order.getNumItems();
+            cnt += (int)order.getNumItems();
+            totalcost += order.getTotalCost();
+            System.out.println("total cost is :" + totalcost);
+            session.setAttribute("TotalPrice",totalcost);
             out.println
               ("<TR>\n" +
                "  <TD>" + order.getItemName() + "\n" +
@@ -114,26 +118,30 @@ public class CartPage extends HttpServlet {
                "</SMALL>\n" +
                "</FORM>\n" +
                "  <TD>" +
-              formatter.format(order.getTotalCost()));
+              formatter.format(order.getTotalCost()) );
               System.out.println(order.getNumItems());
               System.out.println(order.getTotalCost());
           }
           // System.out.println("the total count is " + cnt);
           // session.setAttribute("itemcnt",cnt);
+          out.println("</TABLE><br><br><article class=\"expanded\"><CENTER><h2>The total item cost is " + formatter.format(totalcost) + "</h2><CENTER></article><br><br>");
           String checkoutURL =
-            response.encodeURL("./Checkout.html");
+            response.encodeURL("./CheckoutPage");
           // "Proceed to Checkout" button below table
           out.println
-            ("</TABLE>\n" +
+            ( 
              "<FORM ACTION=\"" + checkoutURL + "\">\n" +
              "<BIG><CENTER>\n" +
              "<INPUT TYPE=\"SUBMIT\"\n" +
              "       VALUE=\"Proceed to Checkout\">\n" +
-             "</CENTER></BIG></FORM>");
+             "</CENTER></BIG>"+
+             // "<INPUT TYPE=\"HIDDEN\" NAME=\"totalcost\"\n" +
+             // "       VALUE=\"" + totalcost + "\">\n" +
+             "</FORM>");
 
         }
         out.println("<BIG><CENTER>\n<a href=\"./WatchServlet\">\n" +
-             "Continute shopping\"\n" +
+             "Continute shopping\n" +
              "</a></CENTER></BIG>");
         out.println("</BODY></HTML>");
       } else{

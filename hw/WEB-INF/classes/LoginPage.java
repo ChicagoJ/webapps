@@ -6,8 +6,8 @@ import javax.servlet.http.*;
 
 public class LoginPage extends HttpServlet {
 
-	private String TAGLOGIN = "<li class=\"right\"><a href=\"./LoginPage\">Login</a></li>";
-      private String TAGSIGNUP = "<li class=\"right\"><a href=\"./SignupPage\">Signup</a></li>";
+      private String TAGLOGIN = "<li style=\"float:right\"><a href=\"./LoginPage\">Login</a></li>";
+      private String TAGSIGNUP = "<li style=\"float:right\"><a href=\"./SignupPage\">Signup</a></li>";
       private String LoginForm = Utilities.PrintLoginForm();
 
 

@@ -12,8 +12,8 @@ public class WatchServlet extends HttpServlet {
       String PRODUCT = "<li class=\"\"><a href=\"./ProductServlet\">Products</a></li>";
       String NOTLOGIN = "<li class=\"right\"><a href=\"./Login.html\">Login</a></li>";
       String NOTSIGNUP = "<li class=\"right\"><a href=\"./Registration.html\">Signup</a></li>";
-      String LOGOUT = "<li class=\"right\"><a href=\"./LogoutServlet\">Logout</a></li>";
-
+      String LOGOUT = "<li style=\"float:right\"><a href=\"./LogoutServlet\">Logout</a></li>";
+      int numCart;
 
 
             protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,8 +28,19 @@ public class WatchServlet extends HttpServlet {
                         String ct = Utilities.PrintContent();
                         String sb = Utilities.PrintSidebar();
                         String ft = Utilities.PrintFooter();
+                        ShoppingCart cart = (ShoppingCart)session.getAttribute("shoppingCart");
                         
-
+                        if (cart != null){
+                              System.out.println("num of item in cart: " + cart.getItemNumber());
+                              numCart = cart.getItemNumber();
+                        } else{
+                              numCart = 0;
+                        }
+                        if (numCart != 0){
+                              hd += "<li style=\"float:right\"><a href=\"./CartPage\">Cart";
+                              hd += "(" + numCart + ")";
+                              hd +="</a></li>";
+                        }   
                         //login or notlogin in
                         if (users!= null){
                               // System.out.println(items);

@@ -20,7 +20,12 @@ public class CheckoutServlet extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		HttpSession session = request.getSession();
 
-		User users = session.getAttribute("users");
+		User users = (User)session.getAttribute("users");
+		String OrderId = Math.random()+ "";
+		Calendar orderTime = Calendar.getInstance();
+		Random random = new Random(System.currentTimeMillis());
+		String confirmationId = Math.abs(random.nextInt()) + "";
+
 
 
         }

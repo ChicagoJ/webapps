@@ -6,8 +6,8 @@ import javax.servlet.http.*;
 
 public class SignupPage extends HttpServlet {
 
-	private String TAGLOGIN = "<li class=\"right\"><a href=\"./LoginPage\">Login</a></li>";
-      private String TAGSIGNUP = "<li class=\"right\"><a href=\"./SignupPage\">Signup</a></li>";
+	private String TAGLOGIN = "<li style=\"float:right\"><a href=\"./LoginPage\">Login</a></li>";
+      private String TAGSIGNUP = "<li style=\"float:right\"><a href=\"./SignupPage\">Signup</a></li>";
       private String SignupForm = Utilities.PrintSignupForm();
 
 
@@ -27,8 +27,7 @@ public class SignupPage extends HttpServlet {
                         hd += TAGLOGIN;
 
                         //Write the real content into content
-                        ct = ct.replace("##Content", SignupForm);
-
+                        ct = ct + SignupForm;
                         pw.print(hd);
                         pw.print(ct);
                         pw.print(sb);
