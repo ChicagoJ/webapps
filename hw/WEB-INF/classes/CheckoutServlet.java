@@ -56,7 +56,7 @@ public class CheckoutServlet extends HttpServlet {
         System.out.println("total cost is :" + totalcost);
         order.setPrice(totalcost);
         users.addToOrders(order);
-        cart.clearCart();
+        // cart.clearCart();
 		pw.println("<html><head><meta charset=\"UTF-8\"><title>Order successfully placed! </title></head>");
 		pw.println("<body>");
 		pw.println("<h2>ATTENTION: Please keep this number for your record.</h2><br>Your order's confirmation id is: <b>"+ conformationId + "<b><br>");
@@ -68,8 +68,16 @@ public class CheckoutServlet extends HttpServlet {
 		order.setEndCancelTime(orderTime);
 		pw.println("<tr><td>Last day to cancel order</td><td>" + (orderTime.get(Calendar.MONTH) + 1) + "/" + orderTime.get(Calendar.DATE) + "/" + orderTime.get(Calendar.YEAR) + "</td></tr></table>");	
 		pw.println("<a href=\"./Home\">Continue shopping</a><br>");
-		pw.println("<a href=\"./OrdersServlet\">View your orders</a>");
+		// pw.println("<a href=\"./OrdersServlet\">View your orders</a>");
+		String homeURL = "./OrdersServlet";
+		pw.println("<FORM ACTION=\"" + homeURL + "\">\n" +
+               	   "<INPUT TYPE=\"HIDDEN\" NAME=\"orderId\"\n" +
+                   "       VALUE=\"" + OrderId + "\">\n" +
+                   "<INPUT TYPE=\"SUBMIT\"\n" +
+                   "       VALUE=\"View your orders\">\n" +
+             	   "</FORM>");
 		pw.println("</body></html");
+        cart.clearCart();
 	}
 
 }

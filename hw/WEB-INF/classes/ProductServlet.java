@@ -36,7 +36,7 @@ public class ProductServlet extends HttpServlet {
                               // System.out.println(items);
                               hd += "<li style=\"float:right\"><a href=\"#\">Hi ";
                               hd += users.getUserId();
-                              if (users.getLevel() >= 1){
+                              if (users.getLevel() > 1){
                                     hd += PRODUCT;
                               }
                               if (users.getLevel() == 1){

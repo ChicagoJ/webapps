@@ -58,7 +58,9 @@ public class Order implements java.io.Serializable {
 	public double getPrice(){
 		return price;
 	}
-
+	public String getFormattedOrderTime() {
+		return (orderTime.get(Calendar.MONTH) + 1) + "/" + orderTime.get(Calendar.DATE) + "/" + orderTime.get(Calendar.YEAR);
+	}
 
 
 }

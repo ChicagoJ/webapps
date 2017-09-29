@@ -44,4 +44,10 @@ public class User {
 	public void addToOrders(Order order) {
 		ordersMap.put(order.getOrderId(), order);
 	}
+	public Map<String, Order> getOrdersMap() {
+		return ordersMap;
+	}
+	public void cancelOrder(String oId) {
+		ordersMap.remove(oId);
+	}
 }

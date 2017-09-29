@@ -44,12 +44,13 @@ public class Utilities {
         str += "<ul>";
         //categories
         str += "<li><h4>Categories</h4><ul>";
-        str += "<li><a href=\"#\">Phone</a></li>";
-        str += "<li><a href=\"#\">Laptop</a></li>";
-        str += "<li><a href=\"#\">HeadPhone</a></li>";
+        str += "<li><a href=\"./PhoneServlet\">Phone</a></li>";
+        str += "<li><a href=\"./LaptopServlet\">Laptop</a></li>";
+        str += "<li><a href=\"./HeadPhoneServlet\">HeadPhone</a></li>";
         str += "<li><a href=\"./WatchServlet\">SmartWatch</a></li>";
-        str += "<li><a href=\"#\">Speakers</a></li>";
-        str += "<li><a href=\"#\">External Storage</a></li></ul></li>";
+        str += "<li><a href=\"./SpeakersServlet\">Speakers</a></li>";
+        str += "<li><a href=\"./EStorageServlet\">External Storage</a></li>";
+        str += "<li><a href=\"./InsuranceServlet\">Warranty</a></li></ul></li>";
         //search site
         str += "<li><h4>Search site</h4><ul>";
         str += "<li class=\"text\">";

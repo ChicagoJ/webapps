@@ -62,7 +62,9 @@ public class CartPage extends HttpServlet {
       "Transitional//EN\">\n";
     out.println(docType +
                 "<HTML>\n" +
-                "<HEAD><TITLE>" + title + "</TITLE></HEAD>\n" +
+                "<HEAD><TITLE>" + title + "</TITLE>");
+    
+    out.println("</HEAD>\n" +
                 "<BODY BGCOLOR=\"#FDF5E6\">\n" +
                 "<H1 ALIGN=\"CENTER\">" + title + "</H1>");
     synchronized(session) {

@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 
-public class WatchServlet extends HttpServlet {
+public class PhoneServlet extends HttpServlet {
 
 	private String TAGLOGIN = "<li class=\"right\"><a href=\"./LoginPage\">Login</a></li>";
       private String TAGSIGNUP = "<li class=\"right\"><a href=\"./SignupPage\">Signup</a></li>";
@@ -65,17 +65,18 @@ public class WatchServlet extends HttpServlet {
                         if (users != null && users.getOrdersMap() != null ) {
                               hd += "( " + users.getOrdersMap().size() + " )";
                         }
-                        hd +=("</a></li>"); 
+                        hd +=("</a></li>");                        //Write the real content into content
+
 
 
 
                         pw.print(hd);
-                        ct += "<article><h2>SmartWatch and Accessories</h2></article>";
+                        ct += "<article><h2>Phone and Accessories</h2></article>";
 
                         pw.println(ct);
                         pw.println("<article class=\"expanded\"><table>");
                         for (Item item : items.values()){
-                              if (item.getItemId().charAt(0) == 'w'){
+                              if (item.getItemId().charAt(0) == 'p'){
                                     pw.println("<tr>");
                                     pw.println("<td>" + item.getItemName() + "</td>");
                                     pw.println("<td> Price: $" + item.getPrice() + "<br><br>");
