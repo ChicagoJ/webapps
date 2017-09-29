@@ -49,8 +49,8 @@ public class Utilities {
         str += "<li><a href=\"./HeadPhoneServlet\">HeadPhone</a></li>";
         str += "<li><a href=\"./WatchServlet\">SmartWatch</a></li>";
         str += "<li><a href=\"./SpeakersServlet\">Speakers</a></li>";
-        str += "<li><a href=\"./EStorageServlet\">External Storage</a></li>";
-        str += "<li><a href=\"./InsuranceServlet\">Warranty</a></li></ul></li>";
+        str += "<li><a href=\"./EStorageServlet\">External Storage</a></li></ul></li>";
+        // str += "<li><a href=\"./InsuranceServlet\">Warranty</a></li></ul></li>";
         //search site
         str += "<li><h4>Search site</h4><ul>";
         str += "<li class=\"text\">";
@@ -130,8 +130,8 @@ public class Utilities {
         str +="<tr><td>User ID</td><td><input type=\"TEXT\" size=\"15\" name=\"userId\"></input></td></tr>";
         str +="<tr><td>Card number</td><td><input type=\"TEST\" size=\"15\" name=\"cardnum\"/></td></tr>";
         str +="<tr><td>Address</td><td><input type=\"TEST\" size=\"30\" name=\"address\"/></td></tr>";
-        str +="<tr><td colspan='2'><center><input type=\"submit\" value=\"Confirm\" /></center></td></tr>";
-        str +="</table></form></center>";
+        str +="</table><center><input type=\"submit\" value=\"Confirm\" /></center>";
+        str +="</form></center>";
         return str;
     }
 

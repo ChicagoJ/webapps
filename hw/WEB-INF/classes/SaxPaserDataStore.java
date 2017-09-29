@@ -125,6 +125,14 @@ public class SaxPaserDataStore extends DefaultHandler {
         return(null);
     }
 
+    public static boolean AddItem(Item item){
+        if(items.containsKey(item.getItemId())){
+            return false;
+        }
+        items.put(item.getItemId(),item);
+        return true;
+    }
+
 
     // public static void main(String[] args) {
     //     getItems("ProductCatalog.xml");

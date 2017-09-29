@@ -60,15 +60,19 @@ public class CheckoutServlet extends HttpServlet {
 		pw.println("<html><head><meta charset=\"UTF-8\"><title>Order successfully placed! </title></head>");
 		pw.println("<body>");
 		pw.println("<h2>ATTENTION: Please keep this number for your record.</h2><br>Your order's confirmation id is: <b>"+ conformationId + "<b><br>");
-		pw.println("<br><br>You package will arrive in abpw 14 days.<br><br>");
+		pw.println("<br><br>You package will arrive in 14 days.<br><br>");
 		orderTime.add(Calendar.DATE, 14);
 		pw.println("<table><tr><td>Estimated Delivery</td><td>" + (orderTime.get(Calendar.MONTH) + 1) + "/" + orderTime.get(Calendar.DATE) + "/" + orderTime.get(Calendar.YEAR) + "</td></tr>");
 		
 		orderTime.add(Calendar.DATE, -5);
 		order.setEndCancelTime(orderTime);
 		pw.println("<tr><td>Last day to cancel order</td><td>" + (orderTime.get(Calendar.MONTH) + 1) + "/" + orderTime.get(Calendar.DATE) + "/" + orderTime.get(Calendar.YEAR) + "</td></tr></table>");	
-		pw.println("<a href=\"./Home\">Continue shopping</a><br>");
-		// pw.println("<a href=\"./OrdersServlet\">View your orders</a>");
+        pw.println( 
+             "<FORM ACTION=\"./Home\">\n" +
+             "<INPUT TYPE=\"SUBMIT\"\n" +
+             "       VALUE=\"Continute to shopping\">\n" +
+             "</FORM>");
+  		// pw.println("<a href=\"./OrdersServlet\">View your orders</a>");
 		String homeURL = "./OrdersServlet";
 		pw.println("<FORM ACTION=\"" + homeURL + "\">\n" +
                	   "<INPUT TYPE=\"HIDDEN\" NAME=\"orderId\"\n" +

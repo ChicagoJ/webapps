@@ -60,6 +60,7 @@ public class ProductServlet extends HttpServlet {
                         ct += "<article><h2>Product</h2></article>";
                         ct += CONTENT;
                         pw.println(ct);
+                        pw.println("<li><a href=\"./Additem.html\">Add an Item</a></li>");
                         int realnum;
                         // int cnt = 0;                     
                         for (Item item : items.values()) {
