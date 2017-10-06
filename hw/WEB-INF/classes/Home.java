@@ -49,7 +49,7 @@ public class Home extends HttpServlet {
                         	hd += "<li style=\"float:right\"><a href=\"#\">Hi ";
                         	hd += users.getUserId();
                               hd +="</a>";
-                        	if (users.getLevel() >= 1){
+                        	if (users.getLevel() > 1){
                         		hd += PRODUCT;
                         	}
                         	if (users.getLevel() == 1){
