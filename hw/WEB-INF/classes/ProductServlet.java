@@ -20,7 +20,8 @@ public class ProductServlet extends HttpServlet {
                         response.setContentType("text/html");
                         PrintWriter pw = response.getWriter();
                         HttpSession session = request.getSession();
-                        Map<String, Item> items = (Map)session.getAttribute("items");
+                        Map<String, Item> items = MySqlDataStoreUtilities.getItems();
+                        // Map<String, Item> items = (Map)session.getAttribute("items");
                         User users = (User)session.getAttribute("users");
 
                         //get HTML content

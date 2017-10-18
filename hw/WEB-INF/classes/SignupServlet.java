@@ -5,19 +5,14 @@ import javax.servlet.http.*;
 
 public class SignupServlet extends HttpServlet {
    
-    private Map<String, User> users = Utilities.getAllUsers();
+    // private Map<String, User> users = Utilities.getAllUsers();
+    private Map<String, User> users = new HashMap<String, User>();
  
-    // public void init() {
-    //             User test = new User("test","TEST",0);
-    //             users.put("test", test);
-    //             User test1 = new User("test1","TEST",0);
-    //             users.put("test1", test1);    
-    //         }
-
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, java.io.IOException {
-                String userid = request.getParameter("userid");
+        // MySqlDataStoreUtilities.selectUser(users);
+        users = MySqlDataStoreUtilities.selectUser();
+        String userid = request.getParameter("userid");
         String password = request.getParameter("password");
         String repassword = request.getParameter("repassword");
 
@@ -44,6 +39,7 @@ public class SignupServlet extends HttpServlet {
                     showPage(response,"Sign up Successed! Enjoy Your time at Smart Portables!");
                     User newUser = new User(userid, password, 0);
                     users.put(userid,newUser);
+                    MySqlDataStoreUtilities.insertUser(userid,password,"0");
                 }                
             } 
             else {

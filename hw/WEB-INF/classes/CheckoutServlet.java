@@ -26,7 +26,7 @@ public class CheckoutServlet extends HttpServlet {
 
 		User users = (User)session.getAttribute("users");
 		//set Order ID
-		String OrderId = Math.random()+ "";
+		String OrderId = users.getUserId() + Math.random()+ "";
 		Random random = new Random(System.currentTimeMillis());
 		String conformationId = Math.abs(random.nextInt()) + "";
 		//get Order time
@@ -41,7 +41,7 @@ public class CheckoutServlet extends HttpServlet {
 	        //   for(int i=0; i<itemsOrdered.size(); i++) {
 	        //     order = (ItemOrder)itemsOrdered.get(i);
 	        // 	System.out.println("item id: " + order.getItemId());
-	        // 	System.out.println("item Name: " + order.getItemName());
+	        // 	System.out.println("item Name: " + order.getItemName());aa
 	        // 	System.out.println("item number: " + order.getNumItems());
         	// }
 		// }
@@ -81,7 +81,21 @@ public class CheckoutServlet extends HttpServlet {
                    "       VALUE=\"View your orders\">\n" +
              	   "</FORM>");
 		pw.println("</body></html");
+        Map<String, Integer> idNum = (Map)session.getAttribute("idNum");
+        for (String itemId: idNum.keySet()){
+        	System.out.println(users.getUserId() + " " + OrderId + " " + itemId+ " " +idNum.get(itemId)+ " " + conformationId);
+        	MySqlDataStoreUtilities.insertOrder(users.getUserId(), OrderId, itemId, idNum.get(itemId), conformationId);
+        }
+
+
+
+        session.removeAttribute("idNum");
+		idNum = (Map)session.getAttribute("idNum");        
+		if (idNum != null){
+            System.out.println("idnum is null now");
+        }
         cart.clearCart();
-	}
+ 	
+    }
 
 }

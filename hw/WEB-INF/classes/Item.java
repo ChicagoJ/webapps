@@ -18,6 +18,16 @@ public class Item implements Serializable{
 		setRebates(reb);
 		setStock(sto);
 	}
+	public Item(String iID, String iNa, double co, double dis, double reb, int sto, List<String> acc){
+		setItemId(iID);
+		setItemName(iNa);
+		setPrice(co);
+		setDiscount(dis);
+		setRebates(reb);
+		setStock(sto);
+		setAccessories(acc);
+	}	
+
 	public Item() {
 		super();
 	}

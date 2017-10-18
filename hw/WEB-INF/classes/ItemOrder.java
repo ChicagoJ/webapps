@@ -30,7 +30,12 @@ public class ItemOrder {
   }
 
   public double getDiscount() {
-    return(getItem().getDiscount());
+    if(getItem().getDiscount() != 0){
+      return(getItem().getDiscount());
+    }
+    else{
+      return 0;
+    }
   }   
   public double getRebates() {
     return(getItem().getRebates());

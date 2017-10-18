@@ -24,17 +24,9 @@ public class Home extends HttpServlet {
 
                         //set product infor
                         items = SaxPaserDataStore.getItems(request.getServletContext().getRealPath("/") + "ProductCatalog.xml");
-                        // items = (Map)session.getAttribute("items");
-				        // for (Item item: items.values()) {
-				        // System.out.println("item #"+ item.getItemId() +":");
-				        // System.out.println("\t\t name: " + item.getItemName());
-				        // System.out.println("\t\t Price: " + item.getPrice());
-				        // System.out.println("\t\t Discount: " + item.getDiscount());
-				        // System.out.println("\t\t Rebates: " + item.getRebates());
-				        // System.out.println("\t\t Stock: " + item.getStock());
-				        // System.out.println("\t\t Accessories: " + item.getAccessories());
-				        // }
-				session.setAttribute("items",items);
+                        // items = MySqlDataStoreUtilities.getItems();
+				// items = MySqlDataStoreUtilities.getItems();
+                        session.setAttribute("items",items);
                         //get HTML content
                         String hd = Utilities.PrintHeader();
                         String ct = Utilities.PrintContent();
@@ -62,8 +54,14 @@ public class Home extends HttpServlet {
 	                        hd += NOTLOGIN;
                     	}
                         hd +=("<li class=\"\" style=\"float: right\" class=\"iu\"><a href=\"./OrdersServlet\">Orders");
-                        if (users != null && users.getOrdersMap() != null ) {
-                              hd += "( " + users.getOrdersMap().size() + " )";
+                        // if (users != null && users.getOrdersMap() != null ) {
+                        //       hd += "( " + users.getOrdersMap().size() + " )";
+                        // }
+                        if (users != null){
+                              List<Order> orderList1 = MySqlDataStoreUtilities.getOrder(users.getUserId());
+                              if (orderList1 != null ) {
+                                    hd += "( " + orderList1.size() + " )";
+                              }
                         }
                         hd +=("</a></li>");                        //Write the real content into content
                         // ct = ct.replace("##CONTENT##", CONTENT);

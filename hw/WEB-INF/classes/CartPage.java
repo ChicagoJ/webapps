@@ -9,13 +9,19 @@ import java.text.*;
 
 public class CartPage extends HttpServlet {
   
+  // ArrayList idList = new ArrayList();
+  // Map<String, Integer> idNum = new HashMap<String, Integer>();
 
   public void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
     HttpSession session = request.getSession();
     User users = (User)session.getAttribute("users");
     ShoppingCart cart;
-    Map<String, Item> items = (Map)session.getAttribute("items");
+    // Map<String, Item> items = (Map)session.getAttribute("items");
+    Map<String, Item> items = MySqlDataStoreUtilities.getItems();
+    ArrayList idList = new ArrayList();
+    Map<String, Integer> idNum = new HashMap<String, Integer>();
 
+    
     synchronized(session) {
       cart = (ShoppingCart)session.getAttribute("shoppingCart");
       System.out.println("the cart is " + cart);
@@ -27,6 +33,7 @@ public class CartPage extends HttpServlet {
       }
       String itemID = request.getParameter("ItemId");
       System.out.println("Name is " + request.getParameter("ItemName") + "\nid is " + itemID);
+
       if (itemID != null) {
         String numItemsString =
           request.getParameter("numItems");
@@ -50,10 +57,16 @@ public class CartPage extends HttpServlet {
           }
           System.out.println("the real # is " + numItems);
           cart.setNumOrdered(itemID, numItems);
-          System.out.println(cart.getItemsOrdered().size());
+          System.out.println("there are " + cart.getItemsOrdered().size() + " items in the cart");
         }
       }
+      // ArrayList nameList = new ArrayList();
+      // if (!nameList.contains(request.getParameter("ItemName"))){
+      //   nameList.add(request.getParameter("ItemName"));
+      // }
+      // System.out.println("the namelist is " + nameList);    
     }
+
     // Whether or not the customer changed the order, show
     // order status.
     response.setContentType("text/html");
@@ -106,8 +119,25 @@ public class CartPage extends HttpServlet {
             order = (ItemOrder)itemsOrdered.get(i);
             cnt += (int)order.getNumItems();
             totalcost += order.getTotalCost();
-            System.out.println("total cost is :" + totalcost);
-            session.setAttribute("TotalPrice",totalcost);
+            // System.out.println("total cost is :" + totalcost);
+            // session.setAttribute("TotalPrice",totalcost);
+
+            if (!idList.contains(order.getItemName())){
+              
+              idList.add(order.getItemName());
+              idNum.put(order.getItemName(),order.getNumItems());
+            } else{
+              idNum.put(order.getItemName(),order.getNumItems());
+            }
+
+
+
+            System.out.println(idNum);
+
+
+
+            // System.out.println("the namelist is " + nameList);
+
             out.println
               ("<TR>\n" +
                "  <TD>" + order.getItemName() + "\n" +
@@ -131,6 +161,9 @@ public class CartPage extends HttpServlet {
               System.out.println(order.getNumItems());
               System.out.println(order.getTotalCost());
           }
+          session.setAttribute("idNum", idNum);
+          session.setAttribute("TotalPrice",totalcost);
+          System.out.println("total cost is :" + totalcost);
           // System.out.println("the total count is " + cnt);
           // session.setAttribute("itemcnt",cnt);
           out.println("</TABLE><br><br><article class=\"expanded\"><CENTER><h2>The total item cost is " + formatter.format(totalcost) + "</h2><CENTER></article><br><br>");
@@ -156,75 +189,73 @@ public class CartPage extends HttpServlet {
              "</FORM>");
         String itemID = request.getParameter("ItemId");
         // Chart charAt0 = itemID.charAt(0);
-        out.println("<div id=\"myCarousel\" class=\"carousel slide\" data-ride=\"carousel\">"
-            + "<ol class=\"carousel-indicators\">"
-            + "<li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>"
-            + "<li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>" 
-            + "<li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>" 
-            + "<li data-target=\"#myCarousel\" data-slide-to=\"4\"></li>" 
-            + "<li data-target=\"#myCarousel\" data-slide-to=\"5\"></li>" 
-            + "<li data-target=\"#myCarousel\" data-slide-to=\"6\"></li></ol>" 
-            + "<div class=\"carousel-inner\" role=\"listbox\">"); 
+        // out.println("<div id=\"myCarousel\" class=\"carousel slide\" data-ride=\"carousel\">"
+        //     + "<ol class=\"carousel-indicators\">"
+        //     + "<li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>"
+        //     + "<li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>" 
+        //     + "<li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>" 
+        //     + "<li data-target=\"#myCarousel\" data-slide-to=\"4\"></li>" 
+        //     + "<li data-target=\"#myCarousel\" data-slide-to=\"5\"></li>" 
+        //     + "<li data-target=\"#myCarousel\" data-slide-to=\"6\"></li></ol>" 
+        //     + "<div class=\"carousel-inner\" role=\"listbox\">"); 
+        if (itemID != null){
+          out.println("<div id=\"myCarousel\" class=\"carousel slide\" data-ride=\"carousel\">"
+              + "<ol class=\"carousel-indicators\">"
+              + "<li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>"
+              + "<li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>" 
+              + "<li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>" 
+              + "<li data-target=\"#myCarousel\" data-slide-to=\"4\"></li>" 
+              + "<li data-target=\"#myCarousel\" data-slide-to=\"5\"></li>" 
+              + "<li data-target=\"#myCarousel\" data-slide-to=\"6\"></li></ol>" 
+              + "<div class=\"carousel-inner\" role=\"listbox\">");         
+      }
         int cCarousel = 0;
         String carousel = "";
         String accessoryName = "";
         String accessoryId;
 
         for (Item item: items.values()) {
-          if(item.getItemId().charAt(0) == itemID.charAt(0) && item.getItemId().charAt(1) == 'a'){
-            if(cCarousel == 0){
-              carousel += "<div class=\"item active\">";
-            } else{
-              carousel +="<div class=\"item\">";
+          if (itemID != null){
+            if(item.getItemId().charAt(0) == itemID.charAt(0) && item.getItemId().charAt(1) == 'a'){
+              if(cCarousel == 0){
+                carousel += "<div class=\"item active\">";
+              } else{
+                carousel +="<div class=\"item\">";
+              }
+              cCarousel++;
+              carousel += "<img src=\"./images/image.jpg\" alt=\"Chania\" width=\"460\" height=\"345\">";
+              carousel += "<div class=\"carousel-caption\"><h3>";
+              //get accessory name and id
+              carousel += item.getItemName();
+              carousel += "</h3>";
+              carousel += "<form action=\"./CartPage\">"; 
+              carousel += "<input type=\"hidden\" name=\"method\" value=\"addToCart\">";
+              carousel += "<input type=\"hidden\" name=\"ItemId\" value=\""+ item.getItemId() + "\">";
+              carousel += "<input type=\"hidden\" name=\"ItemName\" value=\""+ item.getItemName() + "\">";
+              carousel += "<input type=\"hidden\" name=\"Stocks\" value=\""+ item.getStock() + "\">";
+              carousel += "<input class=\"submit-button\" type=\"submit\" value=\"Add to cart\" style=\"background-color:red\">";
+              carousel += "</form>";
+              carousel +="</div></div>";
             }
-            cCarousel++;
-            carousel += "<img src=\"./images/image.jpg\" alt=\"Chania\" width=\"460\" height=\"345\">";
-            carousel += "<div class=\"carousel-caption\"><h3>";
-            //get accessory name and id
-            carousel += item.getItemName();
-            carousel += "</h3>";
-            carousel += "<form action=\"./CartPage\">"; 
-            carousel += "<input type=\"hidden\" name=\"method\" value=\"addToCart\">";
-            carousel += "<input type=\"hidden\" name=\"ItemId\" value=\""+ item.getItemId() + "\">";
-            carousel += "<input type=\"hidden\" name=\"ItemName\" value=\""+ item.getItemName() + "\">";
-            carousel += "<input type=\"hidden\" name=\"Stocks\" value=\""+ item.getStock() + "\">";
-            carousel += "<input class=\"submit-button\" type=\"submit\" value=\"Add to cart\" style=\"background-color:red\">";
-            carousel += "</form>";
-            carousel +="</div></div>";
           }
         }
-        out.println(carousel);
+          // out.println(carousel);
 
+          // out.println("<a class=\"left carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"prev\">" 
+          // + "<span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>"
+          // + "<span class=\"sr-only\">Previous</span></a>" 
+          // + "<a class=\"right carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"next\">"
+          // + "<span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>" 
+          // + "<span class=\"sr-only\">Next</span></a></div></div>");
+        if (itemID != null){
+          out.println(carousel);
 
-
-
-
-
-
-
-
-
-        // out.println("<div class=\"item active\"><img src=\"./images/image.jpg\" alt=\"Chania\" width=\"460\" height=\"345\">" 
-        //     + "<div class=\"carousel-caption\"><h3>A</h3></div></div>" 
-        //     + "<div class=\"item\"><img src=\"./images/image.jpg\" alt=\"Chania\" width=\"460\" height=\"345\">" 
-        //     + "<div class=\"carousel-caption\"><h3>B</h3></div></div>" 
-        //     + "<div class=\"item\"><img src=\"./images/image.jpg\" alt=\"Chania\" width=\"460\" height=\"345\">" 
-        //     + "<div class=\"carousel-caption\"><h3>C</h3></div></div>" 
-        //     + "<div class=\"item\"><img src=\"./images/image.jpg\" alt=\"Chania\" width=\"460\" height=\"345\">" 
-        //     + "<div class=\"carousel-caption\"><h3>D</h3></div></div>"); 
-            
-
-
-
-
-
-            out.println("<a class=\"left carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"prev\">" 
-            + "<span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>"
-            + "<span class=\"sr-only\">Previous</span></a>" 
-            + "<a class=\"right carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"next\">"
-            + "<span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>" 
-            + "<span class=\"sr-only\">Next</span></a></div></div>");
-      // System.out.println("jin tian ni chi le ma :" + itemID);
+          out.println("<a class=\"left carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"prev\">" 
+          + "<span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>"
+          + "<span class=\"sr-only\">Previous</span></a>" 
+          + "<a class=\"right carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"next\">"
+          + "<span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>" 
+          + "<span class=\"sr-only\">Next</span></a></div></div>");        }
 
 
         out.println("</BODY></HTML>");
@@ -235,7 +266,8 @@ public class CartPage extends HttpServlet {
         out.println("<li><a href=\"./Home\">Home</a></li>");
         out.println("</body>");
         out.println("</html>");
-        out.close();      }
+        out.close();      
+      }
     }
   }
 }

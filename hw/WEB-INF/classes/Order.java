@@ -8,12 +8,22 @@ public class Order implements java.io.Serializable {
 	private List itemsOrdered ;
 	private double price;
 	private String conformationID;
+	private String itemName;
+	private int itemNumber;
 	
 	public Order(String oid, String uid, Calendar odt, String cid){
 		this.orderId = oid;
 		this.userId = uid;
 		this.orderTime = odt;
 		this.conformationID = cid;
+	}
+
+	public Order(String uid, String oid, String itemName, int itemNumber, String cid){
+		setUserId(uid);
+		setOrderId(oid);
+		setItemName(itemName);
+		setConformationId(cid);
+		setItemNumber(itemNumber);
 	}
 
 	public void setOrderId(String oid){
@@ -60,6 +70,18 @@ public class Order implements java.io.Serializable {
 	}
 	public String getFormattedOrderTime() {
 		return (orderTime.get(Calendar.MONTH) + 1) + "/" + orderTime.get(Calendar.DATE) + "/" + orderTime.get(Calendar.YEAR);
+	}
+	public void setItemName(String itemName){
+		this.itemName = itemName;
+	}
+	public String getItemName(){
+		return itemName;
+	}
+	public void setItemNumber(int itemNumber){
+		this.itemNumber = itemNumber;
+	}
+	public int getItemNumber(){
+		return itemNumber;
 	}
 
 

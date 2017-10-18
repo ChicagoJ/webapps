@@ -5,9 +5,11 @@ import javax.servlet.http.*;
 
 public class LoginServlet extends HttpServlet {
    
-    private Map<String, User> users = Utilities.getAllUsers();
+    // private Map<String, User> users = Utilities.getAllUsers();
+    private Map<String, User> users = new HashMap<String, User>();
  
     public void init() {
+                users = MySqlDataStoreUtilities.selectUser();
                 User manager = new User("manager","111",2);
                 users.put("manager", manager);
                 User Joey = new User("Joey","111",0);

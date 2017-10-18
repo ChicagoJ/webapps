@@ -20,7 +20,7 @@ public class WatchServlet extends HttpServlet {
                         response.setContentType("text/html");
                         PrintWriter pw = response.getWriter();
                         HttpSession session = request.getSession();
-                        Map<String, Item> items = (Map)session.getAttribute("items");
+                        Map<String, Item> items = MySqlDataStoreUtilities.getItems();
                         User users = (User)session.getAttribute("users");
 
                         //get HTML content
@@ -62,8 +62,11 @@ public class WatchServlet extends HttpServlet {
                               hd += NOTLOGIN;
                         }
                         hd +=("<li class=\"\" style=\"float: right\" class=\"iu\"><a href=\"./OrdersServlet\">Orders");
-                        if (users != null && users.getOrdersMap() != null ) {
-                              hd += "( " + users.getOrdersMap().size() + " )";
+                        if (users != null){
+                              List<Order> orderList1 = MySqlDataStoreUtilities.getOrder(users.getUserId());
+                              if (orderList1 != null ) {
+                                    hd += "( " + orderList1.size() + " )";
+                              }
                         }
                         hd +=("</a></li>"); 
 

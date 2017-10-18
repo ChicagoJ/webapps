@@ -11,9 +11,10 @@ public class CheckoutPage extends HttpServlet {
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
         System.out.println((Double)session.getAttribute("TotalPrice"));
+        Map<String, Integer> idNum = (Map)session.getAttribute("idNum");
+        System.out.println("the id and num is : " + idNum);
 		String MESSAGE = Utilities.PrintCheckoutForm();
         showPage(response,MESSAGE);
-
     } 
     
 
