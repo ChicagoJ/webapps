@@ -6,25 +6,30 @@ import javax.servlet.http.*;
 public class LoginServlet extends HttpServlet {
    
     // private Map<String, User> users = Utilities.getAllUsers();
-    private Map<String, User> users = new HashMap<String, User>();
- 
-    public void init() {
-                users = MySqlDataStoreUtilities.selectUser();
-                User manager = new User("manager","111",2);
-                users.put("manager", manager);
-                User Joey = new User("Joey","111",0);
-                users.put("Joey", Joey);
-                User sales = new User("sales","111",1);
-                users.put("sales",sales);   
-            }
+    // private Map<String, User> users = new HashMap<String, User>();
+    Map<String, User> users = MySqlDataStoreUtilities.selectUser();
+            // users = MySqlDataStoreUtilities.selectUser();
+    // public void init() {
+    //             // users = MySqlDataStoreUtilities.selectUser();
+    //             User manager = new User("manager","111",2);
+    //             users.put("manager", manager);
+    //             User Joey = new User("Joey","111",0);
+    //             users.put("Joey", Joey);
+    //             User sales = new User("sales","111",1);
+    //             users.put("sales",sales);   
+    //         }
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, java.io.IOException {
         String userid = request.getParameter("userid");
         String password = request.getParameter("password");
+        
+        Map<String, User> users = MySqlDataStoreUtilities.selectUser();
 
         HttpSession session = request.getSession();
+        System.out.println("the userid from database is " + users.get(userid) );
+        System.out.println("the user level is " + users.get(userid).getLevel());
 
         if(userid != null && userid.length() != 0) {
             userid = userid.trim();

@@ -516,7 +516,7 @@
         <stock>9999</stock>
     </item>
     <item id="la01">
-        <name>la01y</name>
+        <name>la01</name>
         <price>20</price>
         <stock>9999</stock>
     </item>
@@ -536,12 +536,12 @@
         <stock>9999</stock>
     </item>
     <item id="la05">
-        <name>la02</name>
+        <name>la05</name>
         <price>20</price>
         <stock>9999</stock>
     </item>
-    <item id="la05">
-        <name>la02</name>
+    <item id="la06">
+        <name>la06</name>
         <price>20</price>
         <stock>9999</stock>
     </item>
@@ -929,22 +929,22 @@
         <stock>9999</stock>
     </item>
     <item id="sa04">
-        <name>ha04</name>
+        <name>sa04</name>
         <price>20</price>
         <stock>9999</stock>
     </item>
     <item id="sa03">
-        <name>ha03</name>
+        <name>sa03</name>
         <price>20</price>
         <stock>9999</stock>
     </item>
     <item id="sa02">
-        <name>ha02</name>
+        <name>sa02</name>
         <price>20</price>
         <stock>9999</stock>
     </item>
     <item id="sa01">
-        <name>ha01</name>
+        <name>sa01</name>
         <price>20</price>
         <stock>9999</stock>
     </item>

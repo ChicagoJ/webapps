@@ -9,15 +9,22 @@ public class CancelOrder extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, java.io.IOException {
         HttpSession session = request.getSession();
-        String orderId = request.getParameter("orderId");
-
         User users = (User)session.getAttribute("users");
+        String uId = request.getParameter("userId");
+        String ItemNumber = request.getParameter("ItemNumber");
+        int itemNumber = Integer.parseInt(ItemNumber);
+        String itemName = request.getParameter("itemName");
+        int stocks = MySqlDataStoreUtilities.getStock(itemName);
+        stocks = stocks + itemNumber;
         String cId = request.getParameter("cId");
-        String realCId = users.getOrdersMap().get(orderId).getConformationId(); 
-        if(!cId.equals(realCId)){
+        List<String> realCIdList = MySqlDataStoreUtilities.getCId(uId,itemName);
+        System.out.println(realCIdList + " and the cid is " + cId);
+        if(!realCIdList.contains(cId)){
             showPage(response,NOTCANCELED);
         } else{
-            users.cancelOrder(orderId);
+            // users.cancelOrder(orderId);
+            MySqlDataStoreUtilities.deleteOrder(cId, itemName);
+            MySqlDataStoreUtilities.updateItem(itemName,stocks);
             showPage(response, CANCELED);
         }
 

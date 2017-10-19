@@ -28,7 +28,7 @@
      Smart Portables
   </description>
 
-<!--   <servlet>
+  <servlet>
     <servlet-name>Startup</servlet-name>
     <servlet-class>Startup</servlet-class>
     <load-on-startup>1</load-on-startup>
@@ -37,7 +37,7 @@
   <servlet-mapping>
     <servlet-name>Startup</servlet-name>
     <url-pattern>/Startup</url-pattern>
-  </servlet-mapping> -->
+  </servlet-mapping>
 
   <welcome-file-list>  
    <welcome-file>Home</welcome-file>  
@@ -252,6 +252,7 @@
     <servlet-name>RemoveItemServlet</servlet-name>
     <url-pattern>/RemoveItemServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>UpdateItemServlet</servlet-name>
     <servlet-class>UpdateItemServlet</servlet-class>
@@ -262,4 +263,34 @@
     <url-pattern>/UpdateItemServlet</url-pattern>
   </servlet-mapping>
 
-</web-app>
+  <servlet>
+    <servlet-name>ManagerOrder</servlet-name>
+    <servlet-class>ManagerOrder</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ManagerOrder</servlet-name>
+    <url-pattern>/ManagerOrder</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UpdateOrderServlet</servlet-name>
+    <servlet-class>UpdateOrderServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UpdateOrderServlet</servlet-name>
+    <url-pattern>/UpdateOrderServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AddOrderServlet</servlet-name>
+    <servlet-class>AddOrderServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AddOrderServlet</servlet-name>
+    <url-pattern>/AddOrderServlet</url-pattern>
+  </servlet-mapping>
+
+  </web-app>

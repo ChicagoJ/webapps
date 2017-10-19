@@ -52,7 +52,8 @@ public class HeadPhoneServlet extends HttpServlet {
                                     hd += PRODUCT;
                               }
                               if (users.getLevel() == 1){
-                                    hd += "<li class=\"right\"><a href=\"./Registration.html\">creat account</a></li>";
+                                    hd += "<li style=\"float:right\"><a href=\"./Registration.html\">creat account</a></li>";
+                                    hd += "<li style=\"float:right\"><a href=\"./ManagerOrder\">Manager Orders</a></li>";
                               }
                               hd += LOGOUT;
 

@@ -46,6 +46,7 @@ public class Home extends HttpServlet {
                         	}
                         	if (users.getLevel() == 1){
                         		hd += "<li style=\"float:right\"><a href=\"./Registration.html\">creat account</a></li>";
+                                    hd += "<li style=\"float:right\"><a href=\"./ManagerOrder\">Manager Orders</a></li>";
                         	}
 
                         } else {

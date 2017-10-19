@@ -14,14 +14,14 @@ public class ManageServlet extends HttpServlet {
         String discountstr = request.getParameter("discount");
         String rebatestr = request.getParameter("rebate");
         String stockstr = request.getParameter("stock");
-
+        String accessories = request.getParameter("accessories");
+        
         double price = Double.parseDouble(pricestr);
         double discount = Double.parseDouble(discountstr);
         double rebate = Double.parseDouble(rebatestr);
         int stock = Integer.parseInt(stockstr);
 
-        Item item = new Item(ItemId, ItemName, price, discount, rebate, stock);
-        if(SaxPaserDataStore.AddItem(item)){
+        if(MySqlDataStoreUtilities.addItem(ItemId, ItemName, price, discount, rebate, stock, accessories)){
             response.sendRedirect(request.getContextPath()+"/ProductServlet");
         }
     } 

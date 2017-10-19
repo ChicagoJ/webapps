@@ -188,16 +188,7 @@ public class CartPage extends HttpServlet {
              "</CENTER></BIG>"+
              "</FORM>");
         String itemID = request.getParameter("ItemId");
-        // Chart charAt0 = itemID.charAt(0);
-        // out.println("<div id=\"myCarousel\" class=\"carousel slide\" data-ride=\"carousel\">"
-        //     + "<ol class=\"carousel-indicators\">"
-        //     + "<li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>"
-        //     + "<li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>" 
-        //     + "<li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>" 
-        //     + "<li data-target=\"#myCarousel\" data-slide-to=\"4\"></li>" 
-        //     + "<li data-target=\"#myCarousel\" data-slide-to=\"5\"></li>" 
-        //     + "<li data-target=\"#myCarousel\" data-slide-to=\"6\"></li></ol>" 
-        //     + "<div class=\"carousel-inner\" role=\"listbox\">"); 
+
         if (itemID != null){
           out.println("<div id=\"myCarousel\" class=\"carousel slide\" data-ride=\"carousel\">"
               + "<ol class=\"carousel-indicators\">"

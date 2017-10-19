@@ -12,7 +12,7 @@ public class RemoveItemServlet extends HttpServlet {
 
 
 
-        if(SaxPaserDataStore.RemoveItem(ItemId)){
+        if(MySqlDataStoreUtilities.deleteItem(ItemId)){
             response.sendRedirect(request.getContextPath()+"/ProductServlet");
         }
     } 

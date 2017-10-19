@@ -85,6 +85,9 @@ public class CheckoutServlet extends HttpServlet {
         for (String itemId: idNum.keySet()){
         	System.out.println(users.getUserId() + " " + OrderId + " " + itemId+ " " +idNum.get(itemId)+ " " + conformationId);
         	MySqlDataStoreUtilities.insertOrder(users.getUserId(), OrderId, itemId, idNum.get(itemId), conformationId);
+        	int stocks = MySqlDataStoreUtilities.getStock(itemId);
+        	stocks = stocks - idNum.get(itemId);
+        	MySqlDataStoreUtilities.updateItem(itemId, stocks);
         }
 
 
