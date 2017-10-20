@@ -50,6 +50,10 @@ public class Utilities {
         str += "<li><a href=\"./WatchServlet\">SmartWatch</a></li>";
         str += "<li><a href=\"./SpeakersServlet\">Speakers</a></li>";
         str += "<li><a href=\"./EStorageServlet\">External Storage</a></li></ul></li>";
+        // Trending page
+        str += "<li><h4>Trending</h4><ul>";
+        str += "<li><a href=\"./TrendPage\">Trend</a></li></ul></li>";
+
         // str += "<li><a href=\"./InsuranceServlet\">Warranty</a></li></ul></li>";
         //search site
         str += "<li><h4>Search site</h4><ul>";

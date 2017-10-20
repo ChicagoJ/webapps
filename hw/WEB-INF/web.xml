@@ -292,5 +292,44 @@
     <servlet-name>AddOrderServlet</servlet-name>
     <url-pattern>/AddOrderServlet</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>WriteReviewPage</servlet-name>
+    <servlet-class>WriteReviewPage</servlet-class>
+  </servlet>
 
+  <servlet-mapping>
+    <servlet-name>WriteReviewPage</servlet-name>
+    <url-pattern>/WriteReviewPage</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>WriteReviewServlet</servlet-name>
+    <servlet-class>WriteReviewServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>WriteReviewServlet</servlet-name>
+    <url-pattern>/WriteReviewServlet</url-pattern>
+  </servlet-mapping>  
+  
+  <servlet>
+    <servlet-name>ViewReviewPage</servlet-name>
+    <servlet-class>ViewReviewPage</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ViewReviewPage</servlet-name>
+    <url-pattern>/ViewReviewPage</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>TrendPage</servlet-name>
+    <servlet-class>TrendPage</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>TrendPage</servlet-name>
+    <url-pattern>/TrendPage</url-pattern>
+  </servlet-mapping> 
   </web-app>

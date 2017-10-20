@@ -83,7 +83,16 @@ public class PhoneServlet extends HttpServlet {
                         for (Item item : items.values()){
                               if (item.getItemId().charAt(0) == 'p'){
                                     pw.println("<tr>");
-                                    pw.println("<td>" + item.getItemName() + "</td>");
+                                    pw.println("<td>" + item.getItemName() + "<br><br>");
+                                    pw.println("<form action=\"./WriteReviewPage\">");
+                                    pw.println("<input type=\"hidden\" name=\"ItemName\" value=\""+ item.getItemName() + "\">");
+                                    pw.println("<input class=\"submit-button\" type=\"submit\" value=\"Write Review\" style=\"background-color:red\">");
+                                    pw.println("</form>");
+                                    pw.println("<form action=\"./ViewReviewPage\">");
+                                    pw.println("<input type=\"hidden\" name=\"ItemName\" value=\""+ item.getItemName() + "\">");
+                                    pw.println("<input class=\"submit-button\" type=\"submit\" value=\"View Review\" style=\"background-color:red\">");
+                                    pw.println("</form></td>");
+
                                     pw.println("<td> Price: $" + item.getPrice() + "<br><br>");
                                     pw.println("Discount: " + item.getDiscount() + "<br><br>");
                                     
