@@ -6,6 +6,7 @@ import javax.servlet.http.*;
 
 public class Home extends HttpServlet {
 		 String PRODUCT = "<li class=\"\"><a href=\"./ProductServlet\">Products</a></li>";
+             String INVENTORY = "<li class=\"\"><a href=\"./Inventory\">Inventory</a></li>";
 	       String NOTLOGIN = "<li style=\"float:right\"><a href=\"./LoginPage\">Login</a></li>";
       	 String NOTSIGNUP = "<li style=\"float:right\"><a href=\"./SignupPage\">Signup</a></li>";
 		 String LOGOUT = "<li style=\"float:right\"><a href=\"./LogoutServlet\">Logout</a></li>";
@@ -43,10 +44,13 @@ public class Home extends HttpServlet {
                               hd +="</a>";
                         	if (users.getLevel() > 1){
                         		hd += PRODUCT;
+                                    hd += INVENTORY;
+                                    hd += "<li class=\"\"><a href=\"./SalesReport\">SalesReport</a></li>";
                         	}
                         	if (users.getLevel() == 1){
                         		hd += "<li style=\"float:right\"><a href=\"./Registration.html\">creat account</a></li>";
                                     hd += "<li style=\"float:right\"><a href=\"./ManagerOrder\">Manager Orders</a></li>";
+
                         	}
 
                         } else {

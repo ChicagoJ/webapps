@@ -10,13 +10,16 @@ public class Order implements java.io.Serializable {
 	private String conformationID;
 	private String itemName;
 	private int itemNumber;
-	
+	private double totalSales;
+	private int totalNum;
+	private String oTime;
 	public Order(String oid, String uid, Calendar odt, String cid){
 		this.orderId = oid;
 		this.userId = uid;
 		this.orderTime = odt;
 		this.conformationID = cid;
 	}
+
 
 	public Order(String uid, String oid, String itemName, int itemNumber, String cid){
 		setUserId(uid);
@@ -25,7 +28,15 @@ public class Order implements java.io.Serializable {
 		setConformationId(cid);
 		setItemNumber(itemNumber);
 	}
-
+	public Order(String itemName, int totalNum, double totalSales){
+		setItemName(itemName);
+		setTotalSales(totalSales);
+		setTotalNum(totalNum);
+	}
+	public Order(String oTime, double totalSales){
+		setTotalSales(totalSales);
+		setOTime(oTime);
+	}
 	public void setOrderId(String oid){
 		this.orderId = oid;
 	}	
@@ -82,6 +93,24 @@ public class Order implements java.io.Serializable {
 	}
 	public int getItemNumber(){
 		return itemNumber;
+	}
+	public void setTotalSales(double totalSales){
+		this.totalSales = totalSales;
+	}
+	public double getTotalSales(){
+		return totalSales;
+	}
+	public void setTotalNum(int totalNum){
+		this.totalNum = totalNum;
+	}
+	public int getTotalNum(){
+		return totalNum;
+	}
+	public void setOTime(String oTime){
+		this.oTime = oTime;
+	}
+	public String getOTime(){
+		return oTime;
 	}
 
 

@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         System.out.println("the userid from database is " + users.get(userid) );
-        System.out.println("the user level is " + users.get(userid).getLevel());
+        // System.out.println("the user level is " + users.get(userid).getLevel());
 
         if(userid != null && userid.length() != 0) {
             userid = userid.trim();

@@ -332,4 +332,64 @@
     <servlet-name>TrendPage</servlet-name>
     <url-pattern>/TrendPage</url-pattern>
   </servlet-mapping> 
-  </web-app>
+
+  <servlet>
+    <servlet-name>FindDev</servlet-name>
+    <servlet-class>FindDev</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>FindDev</servlet-name>
+    <url-pattern>/FindDev</url-pattern>
+  </servlet-mapping>   
+
+  <servlet>
+    <servlet-name>ReportServlet</servlet-name>
+    <servlet-class>ReportServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReportServlet</servlet-name>
+    <url-pattern>/ReportServlet</url-pattern>
+  </servlet-mapping> 
+
+  <servlet>
+    <servlet-name>ShowBar</servlet-name>
+    <servlet-class>ShowBar</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ShowBar</servlet-name>
+    <url-pattern>/ShowBar</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Inventory</servlet-name>
+    <servlet-class>Inventory</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Inventory</servlet-name>
+    <url-pattern>/Inventory</url-pattern>
+  </servlet-mapping> 
+  
+  <servlet>
+    <servlet-name>testBar</servlet-name>
+    <servlet-class>testBar</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>testBar</servlet-name>
+    <url-pattern>/testBar</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
+    <servlet-name>SalesReport</servlet-name>
+    <servlet-class>SalesReport</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SalesReport</servlet-name>
+    <url-pattern>/SalesReport</url-pattern>
+  </servlet-mapping>  
+</web-app>

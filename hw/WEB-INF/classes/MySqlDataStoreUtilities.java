@@ -48,7 +48,7 @@ public class MySqlDataStoreUtilities {
         }
     }
 
-    public static void insertOrder(String uId, String oId, String itemId, int number, String cId){
+    public static void insertOrder(String uId, String oId, String itemId, int number, String cId, String oTime, double totalsales){
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -56,21 +56,23 @@ public class MySqlDataStoreUtilities {
                     "root", "nyit");
 
 
-        String insertIntoOrdersQuery = "INSERT INTO Orders("
-                                                + "uId, oId, itemName, itemNumber, cId)"
-                                                + "VALUES(?,?,?,?,?);";
-        PreparedStatement pst = conn.prepareStatement(insertIntoOrdersQuery);
-        pst.setString(1,uId);
-        pst.setString(2,oId);
-        pst.setString(3,itemId);
-        pst.setInt(4,number);
-        pst.setString(5,cId);
-        pst.execute();
-        System.out.println("Orders inserted");
+            String insertIntoOrdersQuery = "INSERT INTO Orders("
+                    + "uId, oId, itemName, itemNumber, cId, orderTime, totalSales)"
+                    + "VALUES(?,?,?,?,?,?,?);";
+            PreparedStatement pst = conn.prepareStatement(insertIntoOrdersQuery);
+            pst.setString(1,uId);
+            pst.setString(2,oId);
+            pst.setString(3,itemId);
+            pst.setInt(4,number);
+            pst.setString(5,cId);
+            pst.setString(6,oTime);
+            pst.setDouble(7,totalsales);
+            pst.execute();
+            System.out.println("Orders inserted");
         }
         catch(Exception e){
             System.out.println("orders not inserted");
-        }    
+        }
     }
     public static boolean addOrder(String uId, String oId, String itemId, int number, String cId){
         Connection conn = null;
@@ -366,6 +368,83 @@ public class MySqlDataStoreUtilities {
         return orders;    
     }
 
+    public static String getItemId(String itemName){
+        String itemId = "";
+        try {
+            Connection conn = null;
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/SP",
+                    "root", "nyit");
+            String selectIdQuery = "SELECT * FROM Products where itemName = \"" + itemName + "\";";
+            PreparedStatement pst = conn.prepareStatement(selectIdQuery);
+            // System.out.println("pst ok");
+            ResultSet rs = pst.executeQuery();
+            // System.out.println("rs ok");
+            while(rs.next()){
+                itemId = rs.getString("itemID");
+                // users.put(rs.getString(("username")),user);
+                // orders.add(order);
+            }
+            // System.out.println(users.values());
+            System.out.println("id selected");
+//            return users;
+        }catch (Exception e){
+            System.out.println("error");
+        }
+        return itemId;    
+    }
+    public static List<Order> getTotalSold(){
+        List<Order> orders = new ArrayList<Order>();
+        try {
+            Connection conn = null;
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/SP",
+                    "root", "nyit");
+            String selectOrderQuery = "select SUM(itemNumber) as totalsold, SUM(totalsales) as finalsales,itemName from Orders GROUP BY itemName ;";
+            PreparedStatement pst = conn.prepareStatement(selectOrderQuery);
+            // System.out.println("pst ok");
+            ResultSet rs = pst.executeQuery();
+            // System.out.println("rs ok");
+            while(rs.next()){
+                Order order = new Order(rs.getString("itemName"),rs.getInt("totalsold"),rs.getDouble("finalsales"));
+                // users.put(rs.getString(("username")),user);
+                orders.add(order);
+            }
+            // System.out.println(users.values());
+            System.out.println("all total sold selected");
+//            return users;
+        }catch (Exception e){
+            System.out.println("error");
+        }
+        return orders;    
+    }
+    
+    public static List<Order> getDaliySales(){
+        List<Order> orders = new ArrayList<Order>();
+        try {
+            Connection conn = null;
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/SP",
+                    "root", "nyit");
+            String selectDaliyQuery = "select SUM(totalsales) as finalsales,orderTime from Orders GROUP BY orderTime;";
+            PreparedStatement pst = conn.prepareStatement(selectDaliyQuery);
+            // System.out.println("pst ok");
+            ResultSet rs = pst.executeQuery();
+            // System.out.println("rs ok");
+            while(rs.next()){
+                Order order = new Order(rs.getString("orderTime"),rs.getDouble("finalsales"));
+                // users.put(rs.getString(("username")),user);
+                orders.add(order);
+            }
+            // System.out.println(users.values());
+            System.out.println("daily sales selected");
+//            return users;
+        }catch (Exception e){
+            System.out.println("error");
+        }
+        return orders;    
+    }
+
     public static int getStock(String itemName){
         int stocks= 0;
         try {
@@ -494,6 +573,8 @@ public class MySqlDataStoreUtilities {
         // String s = "2045380992";
         // if (cid.contains(s)){
         // deleteOrder(s, "HeadPhone 1");}
+        // List<Order> oList = getTotalSold();
+        // System.out.println(oList);
     }
 }
 

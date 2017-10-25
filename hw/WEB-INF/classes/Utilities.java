@@ -15,6 +15,8 @@ public class Utilities {
         str += "<title>Welcome to Smart Portables</title>";
         str += "<link rel=\"stylesheet\" href=\"styles.css\" type=\"text/css\" />";
         str += "<meta name=\"viewport\" content=\"width=device-width, minimum-scale=1.0, maximum-scale=1.0\" /></head>";
+        
+
         str += "<body><div id=\"container\">";
         str += "<header><div class=\"width\"><h1><a href=\"./Home\">Smart<span>Portables</span></a></h1></div></header>";
         str += "<nav><div class=\"width\"><ul><li class=\"start selected\"><a href=\"./Home\">Home</a></li>";
@@ -126,8 +128,70 @@ public class Utilities {
 
 
         return str;
-    }
+    }    
+    public static String PrintProductTableWithNamePriceStock(){
+        String str = "";
+        str += "<article class=\"expanded\"><h3>All products information</h3><hr /><table><tr>";
+        // str += "<td align=\"\">Id</td>";
+        str += "<td align=\"\">Name</td>";
+        str += "<td align=\"\">Price</td>";
+        // str += "<td align=\"\">Discount</td>";
+        // str += "<td align=\"\">Rebate</td>";
+        str += "<td align=\"\">Stock</td></tr>";
 
+
+        return str;
+    }    
+
+    public static String PrintProductTableOnsales(){
+        String str = "";
+        str += "<article class=\"expanded\"><h3>Products on sales(where there are more than one in stotcks for each product)</h3><hr /><table><tr>";
+        // str += "<td align=\"\">Id</td>";
+        str += "<td align=\"\">Name</td>";
+        str += "<td align=\"\">Price</td>";
+        // str += "<td align=\"\">Discount</td>";
+        // str += "<td align=\"\">Rebate</td>";
+        str += "<td align=\"\">Stock</td></tr>";
+
+
+        return str;
+    }
+    public static String PrintProductTableRebates(){
+        String str = "";
+        str += "<article class=\"expanded\"><h3>Products where has manufacturer Rebates(where rebate > 0 )</h3><hr /><table><tr>";
+        // str += "<td align=\"\">Id</td>";
+        str += "<td align=\"\">Name</td>";
+        str += "<td align=\"\">Price</td>";
+        // str += "<td align=\"\">Discount</td>";
+        str += "<td align=\"\">Stock</td>";
+        str += "<td align=\"\">Rebate</td></tr>";
+
+
+        return str;
+    }    
+    public static String PrintOrderTable(){
+        String str = "";
+        str += "<article class=\"expanded\"><h3>All sold products information</h3><hr /><table><tr>";
+        // str += "<td align=\"\">Id</td>";
+        str += "<td align=\"\">Name</td>";
+        str += "<td align=\"\">Price</td>";
+        // str += "<td align=\"\">Discount</td>";
+        str += "<td align=\"\">Number Sold</td>";
+        str += "<td align=\"\">Total Sales</td></tr>";
+
+
+        return str;
+    }
+    public static String PrintDailySaleTable(){
+        String str = "";
+        str += "<article class=\"expanded\"><h3>All sold products information</h3><hr /><table><tr>";
+        // str += "<td align=\"\">Id</td>";
+        str += "<td align=\"\">Dates</td>";
+        str += "<td align=\"\">Total Sales</td></tr>";
+
+
+        return str;
+    }    
     public static String PrintCheckoutForm(){
         String str = "";
         str +="<center><form method=\"post\" action=\"./CheckoutServlet\">";

@@ -39,6 +39,7 @@ public class ProductServlet extends HttpServlet {
                               hd += users.getUserId();
                               if (users.getLevel() > 1){
                                     hd += PRODUCT;
+                                    hd += "<li class=\"\"><a href=\"./Inventory\">Inventory</a></li>";
                               }
                               if (users.getLevel() == 1){
                                     hd += "<li class=\"right\"><a href=\"./Registration.html\">creat account</a></li>";

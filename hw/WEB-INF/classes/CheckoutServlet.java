@@ -49,11 +49,15 @@ public class CheckoutServlet extends HttpServlet {
         order.setItemsOrdered(itemsOrdered);
         double totalcost = 0;
         ItemOrder iorder;
+        Map<String, Double> nameCost = new HashMap<String,Double>();
         for(int i=0; i<itemsOrdered.size(); i++) {
             iorder = (ItemOrder)itemsOrdered.get(i);
+            nameCost.put(iorder.getItemName(),iorder.getTotalCost());
             totalcost += iorder.getTotalCost();
         }
         System.out.println("total cost is :" + totalcost);
+        System.out.println("cost for each product :" + nameCost.values());
+        System.out.println("cost name for each product :" + nameCost.keySet());
         order.setPrice(totalcost);
         users.addToOrders(order);
         // cart.clearCart();
@@ -82,9 +86,11 @@ public class CheckoutServlet extends HttpServlet {
              	   "</FORM>");
 		pw.println("</body></html");
         Map<String, Integer> idNum = (Map)session.getAttribute("idNum");
+        String oTime = orderTime.get(Calendar.MONTH) + "/" + orderTime.get(Calendar.DATE) + "/" + orderTime.get(Calendar.YEAR);
         for (String itemId: idNum.keySet()){
-        	System.out.println(users.getUserId() + " " + OrderId + " " + itemId+ " " +idNum.get(itemId)+ " " + conformationId);
-        	MySqlDataStoreUtilities.insertOrder(users.getUserId(), OrderId, itemId, idNum.get(itemId), conformationId);
+        	// System.out.println(users.getUserId() + " " + OrderId + " " + itemId+ " " +idNum.get(itemId)+ " " + conformationId);
+        	// System.out.println("the total sales for " + itemId + " is " + nameCost.get(itemId));
+        	MySqlDataStoreUtilities.insertOrder(users.getUserId(), OrderId, itemId, idNum.get(itemId), conformationId, oTime, nameCost.get(itemId));
         	int stocks = MySqlDataStoreUtilities.getStock(itemId);
         	stocks = stocks - idNum.get(itemId);
         	MySqlDataStoreUtilities.updateItem(itemId, stocks);
