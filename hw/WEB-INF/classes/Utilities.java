@@ -158,7 +158,7 @@ public class Utilities {
     }
     public static String PrintProductTableRebates(){
         String str = "";
-        str += "<article class=\"expanded\"><h3>Products where has manufacturer Rebates(where rebate > 0 )</h3><hr /><table><tr>";
+        str += "<article class=\"expanded\"><h3>Products where has manufacturer Rebates(1:yes, 0:no, where rebates = 1 )</h3><hr /><table><tr>";
         // str += "<td align=\"\">Id</td>";
         str += "<td align=\"\">Name</td>";
         str += "<td align=\"\">Price</td>";

@@ -56,13 +56,18 @@ public class testBar extends HttpServlet {
 
                               hd += "var options = {title:'the total number of items available for every product',";
                               hd += "width:800,";
-                              hd += "height:800};";
+                              // hd += "height:800};";
+                              
+
+                              hd += "height:800,";
+                              hd += "vAxis:{format:'decimal'}};";
+
                               hd += "var chart = new google.visualization.BarChart(document.getElementById(\"barchart_values\"));";
                               hd += "chart.draw(data,options);}";
                               hd += "</script></head>";
                         }else if(tableType.equals("table6")){
                               hd += "data.addColumn('string', 'ProductName');";
-                              hd += "data.addColumn('number', 'Price($)');";
+                              hd += "data.addColumn('number', 'Price');";
                               hd += "data.addRows([";
                               List<Order> oList = MySqlDataStoreUtilities.getTotalSold();
                               for (Order order : oList) {                                
@@ -74,7 +79,10 @@ public class testBar extends HttpServlet {
 
                               hd += "var options = {title:'the total sales for every product',";
                               hd += "width:800,";
-                              hd += "height:800};";
+                              // hd += "height:800};";
+                              hd += "height:800,";
+                              hd += "vAxis:{format:'currency'}};";
+
                               hd += "var chart = new google.visualization.BarChart(document.getElementById(\"barchart_values\"));";
                               hd += "chart.draw(data,options);}";
                               hd += "</script></head>";                        

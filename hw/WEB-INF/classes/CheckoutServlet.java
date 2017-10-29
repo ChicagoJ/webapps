@@ -86,7 +86,8 @@ public class CheckoutServlet extends HttpServlet {
              	   "</FORM>");
 		pw.println("</body></html");
         Map<String, Integer> idNum = (Map)session.getAttribute("idNum");
-        String oTime = orderTime.get(Calendar.MONTH) + "/" + orderTime.get(Calendar.DATE) + "/" + orderTime.get(Calendar.YEAR);
+        orderTime = Calendar.getInstance();
+        String oTime = (orderTime.get(Calendar.MONTH)+1) + "/" + orderTime.get(Calendar.DATE) + "/" + orderTime.get(Calendar.YEAR);
         for (String itemId: idNum.keySet()){
         	// System.out.println(users.getUserId() + " " + OrderId + " " + itemId+ " " +idNum.get(itemId)+ " " + conformationId);
         	// System.out.println("the total sales for " + itemId + " is " + nameCost.get(itemId));

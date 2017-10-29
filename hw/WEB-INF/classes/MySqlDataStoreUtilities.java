@@ -488,6 +488,8 @@ public class MySqlDataStoreUtilities {
         }
         return stocks;    
     }
+
+
     public static Map<String, Item> getItems(){
         Map<String, Item> items = new HashMap<String, Item>();
         try{
@@ -516,6 +518,8 @@ public class MySqlDataStoreUtilities {
         }
         return items;
     }
+
+    
 
     public static void ReadDataToDB(){
         Map<String, Item> items = new HashMap<String, Item>();
@@ -548,7 +552,26 @@ public class MySqlDataStoreUtilities {
         }
     }
 
+    public static boolean updateItemNum(String itemName){
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/SP",
+                    "root", "nyit");
 
+            int itemNumber = (int)(Math.random()*20 + 10);
+            String updateOrderQuery = "update Products set stocks = " + itemNumber
+                    + " where itemName =\""+ itemName + "\";";
+            PreparedStatement pst = conn.prepareStatement(updateOrderQuery);
+            System.out.println(updateOrderQuery);
+            pst.execute();
+            System.out.println("Numbers updated to DB");
+        }
+        catch(Exception e){
+            System.out.println("Numbers not updated to DB");
+        }
+        return true;
+    }
 
     public static void main(String args[]){
     // //     // String username = "test1";
@@ -556,8 +579,8 @@ public class MySqlDataStoreUtilities {
     // //     // String usertype = "customer";
     // //     // insertUser(username,password,usertype);
         // ReadDataToDB();
-    // //     Map<String, Item> items = new HashMap<String, Item>();
-    // //     items = getItems();
+        Map<String, Item> items = new HashMap<String, Item>();
+        items = getItems();
     // //     System.out.println(items);
     //     String itemID = "k01";
     //     String itemName = "Kindle";
@@ -575,6 +598,9 @@ public class MySqlDataStoreUtilities {
         // deleteOrder(s, "HeadPhone 1");}
         // List<Order> oList = getTotalSold();
         // System.out.println(oList);
+        for(Item item : items.values()){
+            updateItemNum(item.getItemName());
+        }
     }
 }
 
