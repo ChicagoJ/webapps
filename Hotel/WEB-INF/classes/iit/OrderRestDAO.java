@@ -51,6 +51,48 @@ public class OrderRestDAO {
 		}
 		return orderRests;
 	}
+	/**
+	 * Get all orderRests' information 
+	 */
+	public static ArrayList<OrderRest> getOrderRestsList() {
+
+		
+		// no orders in user's orderHashMap, then get orders from db
+		ArrayList<OrderRest> orderRests = new ArrayList<OrderRest>();
+		String sql = "SELECT * FROM orderRestaurants;";
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = connUtil.getConnection();
+			System.out.println("getOrderRestsByOrder conn: " + conn);
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Integer id = rs.getInt("id");
+	            String restId = rs.getString("restId");
+	            Integer oid = rs.getInt("oid");
+	            Integer quantity = rs.getInt("quantity");
+	            String zipCode = rs.getString("zipCode");
+	            String state = rs.getString("state");
+	            String city = rs.getString("city");
+	            Double price = rs.getDouble("price");
+	            
+	            OrderRest orderRest = new OrderRest(id, restId, oid, quantity, zipCode, state, city, price);
+	            orderRests.add(orderRest);
+	        }
+			System.out.println("Get orderRests from db: " + orderRests);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			MySQLDataStoreUtilities.release(rs, ps);
+		}
+		return orderRests;
+	}
+
+
 
 	/**
 	 * Insert orderRests into db.orderRests table

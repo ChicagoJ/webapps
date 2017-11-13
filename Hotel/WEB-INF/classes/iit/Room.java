@@ -13,6 +13,7 @@ public class Room implements Serializable, Comparable<Room> {
 	private String hid;
 	private Double price;
 	private Double discount;
+	private int numberOfRoomTypes;
 	
 	public Integer getId() {
 		return id;
@@ -59,6 +60,12 @@ public class Room implements Serializable, Comparable<Room> {
 	public Double getDiscountedPrice() {
 		return this.price * this.getDiscount();
 	}
+	public void setNumberOfRoomType(int numberOfRoomTypes){
+		this.numberOfRoomTypes = numberOfRoomTypes;
+	}
+	public int getNumberOfRoomType(){
+		return numberOfRoomTypes;
+	}
 	
 	public Room(Integer id, String roomId, String roomType, String descp,
 			String hid, Double price, Double discount) {
@@ -70,6 +77,11 @@ public class Room implements Serializable, Comparable<Room> {
 		this.hid = hid;
 		this.price = price;
 		this.discount = discount;
+	}
+
+	public Room(int numberOfRoomTypes, String hid){
+		this.hid = hid;
+		setNumberOfRoomType(numberOfRoomTypes);
 	}
 	
 	

@@ -74,8 +74,18 @@
 	<div id="body" >
 		<section id="content">
 			<article style="margin-left:35%">
-			
-			
+				
+				<h2> Inventory</h2><hr/>
+				<a href="./HotelInfor.jsp"><font color="red">All Hotel information</font></a><br><br>
+				<a href="./roomInfor.jsp"><font color="red">All room information</font></a><br><br>
+				<a href="./restaurantInfor.jsp"><font color="red">All restaurant information</font></a><br><br>
+				<a href="./discountRoom.jsp"><font color="red">Room where has discount</font></a><br><br>			
+				<a href="./totalTypes.jsp"><font color="red">The total number of room types for each hotel</font></a><br><br>
+				<hr>
+				<hr><h2>Sales Report</h2><hr>
+				<a href="./bookedRoom.jsp"><font color="red">All booked rooms information</font></a><br><br>
+				<a href="./bookedRestaurant.jsp"><font color="red">All booked restaurant information</font></a><br><br>
+				<a href="./dailySales.jsp"><font color="red">Total daily sales transactions</font></a><br><br>
 			</article>
 		</section>
 	</div>

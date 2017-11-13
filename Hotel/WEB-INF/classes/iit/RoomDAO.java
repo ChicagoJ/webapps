@@ -92,7 +92,39 @@ public class RoomDAO implements Serializable {
 		Collections.sort(roomList);
 		return roomList;
 	}
-	
+
+	/**
+	 * Get room list sorted by city
+	 */
+	public static ArrayList<Room> getRoomListGroupByHotel() {
+		ArrayList<Room> roomList = new ArrayList<Room>();
+
+		String sql = "select count(roomType) numberOfRoomTypes, hid from rooms group by hid;";
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = connUtil.getConnection();
+			System.out.println("getRoomList conn: " + conn);
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+	            String hid = rs.getString("hid");
+	            int nRoomType = rs.getInt("numberOfRoomTypes");
+	            // System.out.println("the room number is: ");
+	            Room room = new Room(nRoomType, hid);
+	            roomList.add(room);
+	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			MySQLDataStoreUtilities.release(rs, ps);
+		}
+		System.out.println("get roomList sorted from db");
+		Collections.sort(roomList);
+		return roomList;
+	}	
 	
 	/**
 	 * Get rooms of a hotel

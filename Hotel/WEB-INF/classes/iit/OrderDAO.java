@@ -8,9 +8,91 @@ import java.util.HashMap;
 public class OrderDAO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	//	private static HashMap<Integer, Order> orders = new HashMap<Integer, Order>();
+	private static HashMap<Integer, Order> orders = new HashMap<Integer, Order>();
 	private static ConnectionUtil connUtil = ConnectionUtil.getInstance();
 	
+	
+	public static HashMap<Integer, Order> getAllOrders() {
+		if (orders != null && !orders.isEmpty()) {
+			return orders;
+		}
+		// no orders in user's orderHashMap, then get orders from db
+		String sql = "SELECT * FROM orders";
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = connUtil.getConnection();
+			System.out.println("getAllOrders conn: " + conn);
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+	            Integer id  = rs.getInt("id");
+	            String confirmationId = rs.getString("confirmationId");
+	            String username = rs.getString("username");
+	            Date orderTime = rs.getDate("orderTime");
+	            Date checkinDate = rs.getDate("checkinDate");
+	            Date cancelDeadline = rs.getDate("cancelDeadline");
+	            Date checkoutDate = rs.getDate("checkoutDate");
+	            Float cost = rs.getFloat("cost");
+	            String city = rs.getString("city");
+	            String zipCode = rs.getString("zipCode");
+	            
+	            Order order = new Order(id, confirmationId, username, orderTime, checkinDate, checkoutDate, cancelDeadline, cost, city, zipCode, null, null);
+	            
+	            // get the orderRooms, orderRestaurants of this order
+	            ArrayList<OrderRoom> orderRooms = OrderRoomDAO.getOrderRoomsByOrder(order);
+	            ArrayList<OrderRest> orderRests = OrderRestDAO.getOrderRestsByOrder(order);
+	            order.setOrderRooms(orderRooms);
+	            order.setOrderRests(orderRests);
+	            
+	            orders.put(id, order);
+	        }
+			System.out.println("Get all orders from db: " + orders);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			MySQLDataStoreUtilities.release(rs, ps);
+		}
+		return orders;
+	}
+	
+
+	public static ArrayList<Order> getTotalCostList() {
+		ArrayList<Order> orderList = new ArrayList<Order>();
+		// no orders in user's orderHashMap, then get orders from db
+		String sql = "select sum(cost) TotalCost, orderTime from orders group by orderTime;";
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = connUtil.getConnection();
+			System.out.println("getAllOrders conn: " + conn);
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+
+	            Date orderTime = rs.getDate("orderTime");
+
+	            Float cost = rs.getFloat("TotalCost");
+	            
+	            Order order = new Order(orderTime, cost);
+	            
+	            orderList.add(order);
+	        }
+			System.out.println("Get all orders from db: " + orders);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			MySQLDataStoreUtilities.release(rs, ps);
+		}
+		return orderList;
+	}	
+
 	/**
 	 * Get all orders' information of a user
 	 */
@@ -99,7 +181,7 @@ public class OrderDAO implements Serializable {
 			if(rs.next()){
 				id = rs.getInt(1);
 			}
-			
+			orders.put(id, order);
 			System.out.println(order + " added. id = " + id);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -127,7 +209,7 @@ public class OrderDAO implements Serializable {
 			ps.setInt(1, id);
 			ps.executeUpdate();		// delete the order from db
 			System.out.println(id + " removed.");
-			
+			orders.remove(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally{

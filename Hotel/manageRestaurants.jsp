@@ -54,7 +54,7 @@
 
 	<%
 		ArrayList<Restaurant> restList = new ArrayList<Restaurant>(RestaurantDAO.getAllRestaurants().values());
-		Collections.sort(restList);
+		// Collections.sort(restList);
 	%>
 	<script src="js/jquery-ui.js"></script>
 	<script>

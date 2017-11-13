@@ -55,6 +55,50 @@ public class OrderRoomDAO {
 		}
 		return orderRooms;
 	}
+	/**
+	 * Get all orderRooms' information 
+	 */
+	public static ArrayList<OrderRoom> getOrderRoomsList() {
+
+		
+
+		ArrayList<OrderRoom> orderRooms = new ArrayList<OrderRoom>();
+		String sql = "SELECT * FROM orderRooms;";
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = connUtil.getConnection();
+			System.out.println("getOrderHotels conn: " + conn);
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Integer id = rs.getInt("id");
+	            String roomId = rs.getString("roomId");
+	            String hid = rs.getString("hid");
+	            Integer oid = rs.getInt("oid");
+	            Date checkinDate = rs.getDate("checkinDate");
+	            Date checkoutDate = rs.getDate("checkoutDate");
+	            Integer quantity = rs.getInt("quantity");
+	            String zipCode = rs.getString("zipCode");
+	            String state = rs.getString("state");
+	            String city = rs.getString("city");
+	            Double price = rs.getDouble("price");
+	            
+	            OrderRoom orderRoom = new OrderRoom(id, roomId, hid, oid, checkinDate, checkoutDate, quantity, zipCode, state, city, price);
+	            orderRooms.add(orderRoom);
+	        }
+			System.out.println("Get OrderHotels from db: " + orderRooms);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			MySQLDataStoreUtilities.release(rs, ps);
+		}
+		return orderRooms;
+	}
+
 
 	/**
 	 * Insert orderRooms into db.orderRooms table

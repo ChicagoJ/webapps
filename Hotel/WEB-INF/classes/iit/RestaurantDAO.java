@@ -173,5 +173,6 @@ public class RestaurantDAO implements Serializable {
 		}
 		return name;
 	}
+
 	
 }

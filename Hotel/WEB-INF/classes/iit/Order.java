@@ -147,6 +147,11 @@ public class Order implements Serializable, Comparable<Order> {
 		this.orderRooms = orderRooms;
 		this.orderRests = orderRests;
 	}
+
+	public Order(Date orderTime, Float cost){
+		setOrderTime(orderTime);
+		setCost(cost); 
+	}
 	
 	@Override
 	public String toString() {

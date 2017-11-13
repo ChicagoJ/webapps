@@ -1,5 +1,6 @@
 package iit;
 import java.io.*;
+import java.lang.reflect.Method;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -10,14 +11,29 @@ public class CancelOrderServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
+	
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String methodName = request.getParameter("method");
+		System.out.println("calling method: " + methodName);
+		
+		try {
+			Method method = getClass().getDeclaredMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
+			method.invoke(this, request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
+	protected void userCancelOrder(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		HttpSession session = request.getSession();
 		String sessionFlag = (String)session.getAttribute("flag");  
         String requestFlag = request.getParameter("flag"); 
         
         if (!requestFlag.equals(sessionFlag)) {
-			response.sendRedirect(request.getContextPath() + "/OrdersServlet");
+			response.sendRedirect(request.getContextPath() + "/reservations.jsp");
 			System.out.println("wrongly re-submission.");
 			return;
 		}
@@ -71,5 +87,34 @@ public class CancelOrderServlet extends HttpServlet {
 		request.getRequestDispatcher("/reservations.jsp").forward(request, response);
 		out.close();
 	}
-
+	
+	
+	protected void managerCancelOrder(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		HttpSession session = request.getSession();
+		String sessionFlag = (String)session.getAttribute("flag");  
+        String requestFlag = request.getParameter("flag"); 
+        
+        if (!requestFlag.equals(sessionFlag)) {
+			response.sendRedirect(request.getContextPath() + "/reservations.jsp");
+			System.out.println("wrongly re-submission.");
+			return;
+		}
+        session.removeAttribute("flag");
+        
+		PrintWriter out = response.getWriter();
+		
+		// past empty check
+		Integer oid = Integer.parseInt(request.getParameter("oid"));		// order's Id
+		
+		// remove an order and all its orderItems from db
+		synchronized (session) {
+			OrderDAO.removeOrderById(oid);
+			OrderRoomDAO.removeOrderRooms(oid);
+			OrderRestDAO.removeOrderRests(oid);
+		}
+		System.out.println("Order cancelled");
+		
+		request.getRequestDispatcher("/reservations.jsp").forward(request, response);
+		out.close();
+	}
 }

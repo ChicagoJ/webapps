@@ -75,7 +75,7 @@
 
 	<div id="body" class="rooms text-center">
 		<section id="content">
-			<article style="margin-left:5%"><h2>All Reservations</h2><br>
+			<article style="margin-left:5%"><h2><%=(user.getLevel() == 1 ? "Manage" : "All" )%> Reservations</h2><br>
 				<%
 				String message = (String)request.getAttribute("cancelMessage");
 				if (message != null && !message.trim().equals("")) {
@@ -89,13 +89,44 @@
 			<article style="margin-left:25%">
 				<table style="border-collapse: separate; border-spacing: 20px 20px;">
 					<tr>
+						<%
+						if(user != null && user.getLevel() == 1) {
+						%>
+						<td align="center">User</td>
+						<%
+						}
+						%>
 						<td align="center">Time</td>
 						<td align="center">Cost</td>
 						<td>&nbsp;</td>
 					</tr>
 					
 					<%
-					if(user != null && user.getOrdersMap() != null && !user.isOrderEmpty()) {
+					if(user != null && user.getLevel() == 1) {
+						ArrayList<Order> orderList = new ArrayList<Order>(OrderDAO.getAllOrders().values());
+				        Collections.sort(orderList);
+				        
+				        for (Order order : orderList) {
+							
+							out.println("<tr>");
+							out.println("<td align=\"center\">" + order.getUsername() + "</a></td>");
+							out.println("<td align=\"center\">" + order.getFormattedOrderTime() + "</a></td>");
+							out.println("<td align=\"center\">$" + String.format("%.2f", order.getCost()) + "</td>");
+							out.println("<td>");
+							out.println("<form action=\"./CancelOrderServlet\" method=\"post\">");
+							out.println("<input type=\"hidden\" name=\"flag\" value=\"" + flag + "\">");
+							out.println("<input type=\"hidden\" name=\"method\" value=\"managerCancelOrder\">");
+							out.println("<input type=\"hidden\" name=\"oid\" value=\"" + order.getId() + "\">");
+							out.println("<input class=\"submit-button\" type=\"submit\" value=\"Cancel\" style=\"background-color:orange\" "
+									+ "onclick='return confirm(\"Are you sure to remove this item?\")'>");
+							out.println("</form>");
+							out.println("</td>");
+							
+							out.println("</tr>");
+				        }
+					}
+					
+					if(user != null && user.getLevel() != 1 && user.getOrdersMap() != null && !user.isOrderEmpty()) {
 						// sort by order's time
 						ArrayList<Order> orderList = new ArrayList<Order>(user.getOrdersMap().values());
 				        Collections.sort(orderList);
@@ -113,6 +144,7 @@
 								out.println("<td>");
 								out.println("<form action=\"./CancelOrderServlet\" method=\"post\">");
 								out.println("<input type=\"hidden\" name=\"flag\" value=\"" + flag + "\">");
+								out.println("<input type=\"hidden\" name=\"method\" value=\"userCancelOrder\">");
 								out.println("<input type=\"hidden\" name=\"oid\" value=\"" + order.getId() + "\">");
 								out.println("<input type=\"text\" size=\"30\" name=\"inputId\" placeholder=\"Confirmation ID to cancel\" />");
 								out.println("<input class=\"submit-button\" type=\"submit\" value=\"Cancel\" style=\"background-color:orange\" "
@@ -127,7 +159,7 @@
 						}
 					}
 					else {
-						out.println("<tr><td colspan=\"6\">No past reservation found</td></tr>");
+						out.println("<tr><td colspan=\"6\">No more reservation found</td></tr>");
 					} // end if
 					
 					%>
