@@ -133,6 +133,10 @@ public class OrderRoom implements Serializable {
 		this.city = city;
 		this.price = price;
 	}
+	public OrderRoom(Integer quantity, String hid){
+		this.hid = hid;
+		this.quantity = quantity;
+	}
 	
 	
 	public OrderRoom() {

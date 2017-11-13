@@ -123,7 +123,7 @@
 	<div id="body" class="rooms text-center">
 		<section id="content">
 			<article>
-				<h3>All Rooms</h3>
+				<h3>Daliy Sales</h3>
 				<a href="#" onclick="javascript:history.back(-1);">Return</a>
 				<div id="error"></div>
 			</article>
@@ -131,7 +131,7 @@
 			<article>
 				<center><table style="border-collapse: separate; border-spacing: 30px 50px;">
 					<tr>
-						<td>Order Time</td>
+						<td>Date</td>
 						<td>Total Cost</td>
 
 					</tr>				

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Booked Rooms Information</title>
+<title>Booked Restaurant Information</title>
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,700italic,800italic,400,300,600,700,800'
 	rel='stylesheet' type='text/css'>
@@ -121,7 +121,7 @@
 	<div id="body" class="rooms text-center">
 		<section id="content">
 			<article>
-				<h3>All Rooms</h3>
+				<h3>Booked Restaurants</h3>
 				<a href="#" onclick="javascript:history.back(-1);">Return</a>
 				<div id="error"></div>
 			</article>

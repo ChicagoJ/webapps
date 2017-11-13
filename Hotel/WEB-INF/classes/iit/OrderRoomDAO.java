@@ -98,7 +98,40 @@ public class OrderRoomDAO {
 		}
 		return orderRooms;
 	}
+	/**
+	 * Get hotel count orderRooms' information 
+	 */
+	public static ArrayList<OrderRoom> getOrderHotelList() {
 
+		
+
+		ArrayList<OrderRoom> orderRooms = new ArrayList<OrderRoom>();
+		String sql = "select count(hid) quantity, hid from orderRooms group by hid;";
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = connUtil.getConnection();
+			System.out.println("getOrderHotels conn: " + conn);
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+	            String hid = rs.getString("hid");
+	            int quantity = rs.getInt("quantity");
+	            
+	            OrderRoom orderRoom = new OrderRoom(quantity, hid);
+	            orderRooms.add(orderRoom);
+	        }
+			System.out.println("Get OrderHotels from db: " + orderRooms);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			MySQLDataStoreUtilities.release(rs, ps);
+		}
+		return orderRooms;
+	}
 
 	/**
 	 * Insert orderRooms into db.orderRooms table

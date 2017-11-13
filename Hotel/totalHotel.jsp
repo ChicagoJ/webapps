@@ -1,9 +1,9 @@
-<%@page import="java.util.*"%>
 <%@page import="iit.*"%>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Booked Rooms Information</title>
+<title>hotel booked transactions</title>
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,700italic,800italic,400,300,600,700,800'
 	rel='stylesheet' type='text/css'>
@@ -14,6 +14,52 @@
 <link href="css/styles_login.css" rel="stylesheet" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="js/jquery.min.js"></script>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the piechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table, 
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      
+      <% 
+      	ArrayList<OrderRoom> roomList = OrderRoomDAO.getOrderHotelList();
+      	String content = "[";
+      	for (OrderRoom room : roomList){
+      		content += "['";
+      		String hid = room.getHid();
+      		String hname = HotelDAO.getHotelById(hid).getName();
+      		content += hname.replaceAll("[\\pP‘’“”]", "");
+      		content += "', ";
+      		content += room.getQuantity();
+      		content += "],";
+      	}
+      	content += "]";
+      	System.out.println(content);
+      %>
+      function drawChart() {
+
+      // Create the data table.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Hotel');
+      data.addColumn('number', 'Number');
+      data.addRows(<%= content %>);
+
+      // Set chart options
+      var options = {'title':'Total booked number for hotel',
+                     'width':1000,
+                     'height':500};
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }</script>
 </head>
 <body>
 
@@ -70,11 +116,8 @@
 			</div>
 		</div>
 	</div>
-
-	<%
-		ArrayList<OrderRoom> roomList = OrderRoomDAO.getOrderRoomsList();
-	%>
-	<script src="js/jquery-ui.js"></script>
+	<br><br><br>
+	
 	<script>
 	
 		$(function() {
@@ -97,103 +140,20 @@
 				}
 			});
 			
-			//ajax change cartRoom quantity
-			$("#discount").change(function(){
-				var discountVal = $.trim(this.value);
-				var flag = false;
-				var reg = /^[0-9]*(.[0-9]*)?([eE][-+][0-9]*)?$/;
-				var discount = -1;
-				if(reg.test(discountVal)){
-					discount = parseDouble(discountVal);
-					if(discount > 0){
-						flag = true;
-					}
-				}
-				
-				if(!flag){
-					alert("Invalid input");
-					$(this).val($(this).attr("class"));
-				}
-			});
-			
 		});
 	</script>
+
 	<div id="body" class="rooms text-center">
 		<section id="content">
 			<article>
-				<h3>Booked Rooms</h3>
-				<a href="#" onclick="javascript:history.back(-1);">Return</a>
-				<div id="error"></div>
+				<h3>Total booked number for hotel</h3>
+				<!-- <a href="./addRestaurant.jsp"><font color="red">Add a Restaurant</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+				<a href="#" onclick="javascript:history.back(-1);">Return</a><br><br>
+				<font color="green"><%=(request.getAttribute("msg") == null ? "" : request.getAttribute("msg")) %></font>
 			</article>
-			
-			<article>
-				<center><table style="border-collapse: separate; border-spacing: 30px 50px;">
-					<tr>
-						<td>Hotel Name</td>
-						<td>City</td>
-						<!-- <td>room Id</td> -->
-						<td>room Type</td>
-						<!-- <td>Description</td> -->
-						<td>Price</td>
-						<td>Discount</td>
-						<td>Check in Date</td>
-						<td>Check out Date</td>
+			<article style="margin-left:15%">
+				<div id="chart_div" style="width:400; height:300"></div>
 
-					</tr>				
-					
-					<%
-						for(OrderRoom room: roomList) {
-							String hid = room.getHid();
-							String hname = HotelDAO.getHotelById(hid).getName();
-							String roomId = room.getRoomId();
-							String city = HotelDAO.getHotelById(hid).getCity();
-							String roomType ="";
-							
-							Room realroom = RoomDAO.getRoomById(roomId);
-						if (realroom.getRoomType().equals("f")){
-								roomType += "Family Room";
-						} else if (realroom.getRoomType().equals("ld")){
-								roomType += "Deluxe Double";
-						} else if (realroom.getRoomType().equals("ls")){
-								roomType += "Deluxe Single";
-						} else if (realroom.getRoomType().equals("sd")){
-								roomType += "Standard Double";
-						} else if (realroom.getRoomType().equals("ss")){
-								roomType += "Standard Single";
-						}
-					%>
-							<tr>
-								<td><%=hname %></td>
-								<td><%=city %></td>
-								<!-- <td><%=roomId %></td> -->
-								<td>
-									<%=roomType %>
-								</td>
-								
-								<!-- <td>
-									<%=RoomDAO.getRoomById(roomId).getDescp() %>
-								</td> -->
-								
-								<td>
-									<%=RoomDAO.getRoomById(roomId).getPrice() %>
-								</td>
-								
-								<td>
-									<%=RoomDAO.getRoomById(roomId).getDiscount() %>
-								</td>
-								
-								<td>
-									<%=room.getCheckinDate() %>
-								</td>
-								<td>
-									<%=room.getCheckoutDate() %>
-								</td>
-							</tr>
-					<%
-						}
-					%>
-				</table></center>
-			
 			</article>
 		</section>
 	</div>

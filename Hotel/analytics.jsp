@@ -86,6 +86,7 @@
 				<a href="./bookedRoom.jsp"><font color="red">All booked rooms information</font></a><br><br>
 				<a href="./bookedRestaurant.jsp"><font color="red">All booked restaurant information</font></a><br><br>
 				<a href="./dailySales.jsp"><font color="red">Total daily sales transactions</font></a><br><br>
+				<a href="./totalHotel.jsp"><font color="red">Total Hotel booked transactions</font></a><br><br>
 			</article>
 		</section>
 	</div>
