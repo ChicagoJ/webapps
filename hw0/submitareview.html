@@ -1,0 +1,167 @@
+<!doctype html>
+
+<!-- INDEX -->
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>GameSpeed</title>
+	<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+<div id="container">
+    <header>
+    	<h1><a href="./">GameSpeed</a></h1>
+        <h2>This is an assignment for CSP 595</h2>
+    </header>
+    <div class="cart">
+		<a href="./Cart">Cart</a>
+	</div>
+	<div class="sl">
+		<a href="./signup.html">Sign Up</a> 
+        <a href="./login.html">Log In</a>
+	</div>
+    <nav>
+    	<ul>
+        	<li class="start selected"><a href="./">Home</a></li>
+            <li class=""><a href="./xbox.html">XBox</a></li>
+            <li class=""><a href="./ps.html">Play Station</a></li>
+            <li class=""><a href="./wii.html">Wii</a></li>
+            <li class="end"><a href="./games.html">Games</a></li>
+        </ul>
+    </nav>
+    <div id="body">		
+
+	<section id="content">
+
+	    <article>
+			
+			<h2>Write Review</h2>
+			
+		</article>
+	
+		<form method="Get" action="./SubmitReview">
+				<table>
+				<tr><td>Product Name: </td><td>
+				<input type="text" name="productName" ></td>
+					</tr>
+				<tr><td>Product Category: </td><td>
+				<select name="productCategory">
+					<option value="Game Console">Game Concole</option>
+					<option value="Video Game">Video Game</option>
+				</select></td>
+				</tr>
+				<tr><td>Product Price: $</td><td>
+					<input type="text" name="productPrice"></td></tr>
+				<tr><td>Retailer Name: </td><td>
+					<input type="text" name="retailerName"></td></tr>
+				<tr><td>Retailer Zip: </td><td>
+					<input type="text" name="retailerZip"></td></tr>
+				<tr><td>Retailer City: </td><td>
+					<input type="text" name="retailerCity"></td></tr>
+				<tr><td>Retailer State: </td><td>
+					<input type="text" name="retailerState"></td></tr>
+				<tr><td>Product On Sale: </td><td>
+					<select name="productOnSale">
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+						</select></td></tr>
+				<tr><td>Manufacturer Name: </td><td>
+					<input type="text" name="manufacturerName"></td></tr>
+				<tr><td>Manufacturer Rebate: </td><td>
+					<input type="text" name="manufacturerRebate"></td></tr>
+				<tr><td>User ID: </td><td>
+					<input type="text" name="userID"></td></tr>
+				<tr><td>User Age: </td><td>
+					<input type="text" name="userAge"></td></tr>
+				<tr><td>User Gender: </td><td>
+					<select name="userGender">
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+						</select></td></tr>
+				<tr><td>User Occupation: </td><td>
+					<input type="text" name="userOccupation"></td></tr>
+				<tr><td>Review Rating: </td><td>
+					<input type="radio" name="reviewRating" value="5" checked>*****
+					<input type="radio" name="reviewRating" value="4">****
+					<input type="radio" name="reviewRating" value="3">***
+					<input type="radio" name="reviewRating" value="2">**
+					<input type="radio" name="reviewRating" value="1">*</td></tr>
+				<tr><td>Review Date: </td><td>
+					<input type="date" name="reviewDate"></td></tr>
+				<tr><td>Review Text: </td></tr>
+				</table>
+				<tr><textarea name="reviewText" rows="4" cols="50"></textarea></tr><br>
+				<tr><input type="submit" value="Submit"></tr>
+			</form>
+			
+		</article>
+    </section>
+        
+   <aside class="sidebar">
+	
+            <ul>	
+               <li>
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="./xbox.html">XBox</a></li>
+                        <li><a href="./ps.html">Play Station</a></li>
+                        <li><a href="./wii.html">Wii</a></li>
+                        <li><a href="./games.html">Games</a></li>
+                    
+                    </ul>
+                </li>
+                
+                <li>
+                    <h4>About us</h4>
+                    <ul>
+                        <li class="text">
+                        	<p style="margin: 0;">This is a sample website created to demonstrate a standard enterprise web page.</p>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>
+                	<h4>Search site</h4>
+                    <ul>
+                    	<li class="text">
+                            <form method="get" class="searchform" action="#" >
+                                <p>
+                                    <input type="text" size="25" value="" name="s" class="s" />
+                                    
+                                </p>
+                            </form>	
+						</li>
+					</ul>
+                </li>
+                
+            </ul>
+		
+    </aside>
+    
+	<div class="clear"></div>
+	</div>
+    
+	<footer>
+	
+        <div class="footer-content">
+            <ul>
+            	<li><h4>Dummy Link Section 1</h4></li>
+                <li><a href="#">Dummy Link 1</a></li>
+			</ul>
+           
+        <div class="clear"></div>
+        </div>
+		
+        <div class="footer-bottom">
+            <p>CSP 595 - Enterprise Web Application - assignment 1 by Ran SU</p>
+        </div>
+		
+    </footer>
+</div>
+
+</body>
+
+</html>
+

@@ -15,8 +15,10 @@ Download: http://zypopwebtemplates.com/
 License: Creative Commons Attribution
 //-->
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+<script type="text/javascript" src="javascript.js"></script>
+
 </head>
-<body>
+<body onload="init()">
 <div id="container">
     <header>
 	<div class="width">
@@ -30,8 +32,9 @@ License: Creative Commons Attribution
         	    	<li class=""><a href="examples.html">Examples</a></li>
          	   	<li><a href="#">Products</a></li>
           	  	<li><a href="#">Solutions</a></li>
-                ##USER##
-          	 	<li class="end"><a href="#">Contact</a></li>
+            <form name="autofillform" action="autocomplete">
+            <input type="text" size="30" id="searchId" onkeyup="doCompletion()">
+            </form>
         	</ul>
 	</div>
     </nav>

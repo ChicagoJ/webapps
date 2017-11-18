@@ -17,10 +17,13 @@ public class Utilities {
         str += "<meta name=\"viewport\" content=\"width=device-width, minimum-scale=1.0, maximum-scale=1.0\" /></head>";
         
 
-        str += "<body><div id=\"container\">";
+        str += "<body onload=\"init()\">"; 
+        str += "<script type=\"text/javascript\" src=\"javascript.js\"></script>";
+        str += "<div id=\"container\">";
         str += "<header><div class=\"width\"><h1><a href=\"./Home\">Smart<span>Portables</span></a></h1></div></header>";
         str += "<nav><div class=\"width\"><ul><li class=\"start selected\"><a href=\"./Home\">Home</a></li>";
         str += "<li class=\"\"><a href=\"#\">Categories</a></li>";
+
         // str += "<li style=\"float:right\"><a href=\"./CartPage\">Cart</a></li>";
 
     
@@ -30,7 +33,16 @@ public class Utilities {
 
     public static String PrintContent(){
         String str = "";
-        str += "</ul></div></nav>";
+        str += "</ul></div>";
+        // str += "<div name=\"autofillformm\">";
+        str += "<form name=\"autofillform\" action=\"autocomplete\">";
+        str += "<input type=\"text\" name=\"searchId\" value=\"\" class=\"input\" id=\"searchId\" onkeyup=\"doCompletion()\"";
+        str += "placeholder=\"search here..\" style=\"padding: 5px; front-size:16px;\" />";
+        str += "<div id=\"auto-row\">";
+        str += "<table id=\"complete-table\" class=\"gridtable\" style=\"position: absolute;width: 315px;\"></table>";
+        str += "</div></form>";
+        // str += "</div>";
+        str += "</nav>";
         str += "<div id=\"body\" class=\"width\">";
         str += "<section id=\"content\">";
         // str += "<article><h2>Welcome to Smart Portables</h2></article>";
@@ -58,11 +70,11 @@ public class Utilities {
 
         // str += "<li><a href=\"./InsuranceServlet\">Warranty</a></li></ul></li>";
         //search site
-        str += "<li><h4>Search site</h4><ul>";
-        str += "<li class=\"text\">";
-        str += "<form method=\"get\" class=\"searchform\" action=\"#\">";
-        str += "<p><input type=\"text\" size=\"31\" value=\"\" name=\"s\" class=\"s\"/>";
-        str += "</p></form></li></ul></li>";  
+        // str += "<li><h4>Search site</h4><ul>";
+        // str += "<li class=\"text\">";
+        // str += "<form method=\"get\" class=\"searchform\" action=\"#\">";
+        // str += "<p><input type=\"text\" size=\"31\" value=\"\" name=\"s\" class=\"s\"/>";
+        // str += "</p></form></li></ul></li>";  
         str += "</ul></aside><div class=\"clear\"></div></div>";
         return str;
     }

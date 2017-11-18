@@ -1,0 +1,121 @@
+<!doctype html>
+
+<!-- INDEX -->
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>GameSpeed</title>
+	<link rel="stylesheet" href="styles.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <script type="text/javascript" src="javascript.js"></script>
+</head>
+
+<body onload="init()">
+<div id="container">
+    <header>
+    	<h1><a href="./">GameSpeed</a></h1>
+        <h2>This is an assignment for CSP 595</h2>
+    </header>
+    <div class="cart">
+		<a href="./Cart">Cart</a>
+	</div>
+    <div class="sl">
+		<a href="./signup.html">Sign Up</a> 
+        <a href="./login.html">Log In</a>
+	</div>
+    <nav>
+    	<ul>
+        	<li class="start selected"><a href="./">Home</a></li>
+            <li class=""><a href="./xbox.html">XBox</a></li>
+            <li class=""><a href="./ps.html">Play Station</a></li>
+            <li class=""><a href="./wii.html">Wii</a></li>
+            <li class="end"><a href="./games.html">Games</a></li>
+            <form name="autofillform" action="autocomplete">
+            <input type="text" size="30" id="complete-field" onkeyup="doCompletion()">
+            </form>
+        </ul>
+    </nav>
+    <div id="body">		
+
+	<section id="content">
+
+	    <article>
+			
+			<h2>Welcome to GameSpeed</h2>
+			
+		</article>
+	
+		<article class="expanded">
+
+            <h2>we love gaming</h2>
+						
+            <p>hello</p>
+
+			
+		</article>
+    </section>
+        
+   <aside class="sidebar">
+	
+            <ul>	
+               <li>
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="./xbox.html">XBox</a></li>
+                        <li><a href="./ps.html">Play Station</a></li>
+                        <li><a href="./wii.html">Wii</a></li>
+                        <li><a href="./games.html">Games</a></li>
+                    
+                    </ul>
+                </li>
+                
+                <li>
+                    <h4>About us</h4>
+                    <ul>
+                        <li class="text">
+                        	<p style="margin: 0;">This is a sample website created to demonstrate a standard enterprise web page.</p>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>
+                	<h4>Search site</h4>
+                    <ul>
+                    	<li class="text">
+                            <form name="autofillform" action="autocomplete">
+                                <input type="text" size="30" id="complete-field" onkeyup="doCompletion()">
+                            </form>
+						</li>
+					</ul>
+                </li>
+                
+            </ul>
+		
+    </aside>
+    
+	<div class="clear"></div>
+	</div>
+    
+	<footer>
+	
+        <div class="footer-content">
+            <ul>
+            	<li><h4>Dummy Link Section 1</h4></li>
+                <li><a href="#">Dummy Link 1</a></li>
+			</ul>
+           
+        <div class="clear"></div>
+        </div>
+		
+        <div class="footer-bottom">
+            <p>CSP 595 - Enterprise Web Application - assignment 1980 by Ran SU</p>
+        </div>
+		
+    </footer>
+    <table id="complete-table" class="popupBox" />
+</div>
+
+</body>
+
+</html>

@@ -19,6 +19,37 @@ public class ComposerPage extends HttpServlet {
         MESSAGE += "<tr><td>Product Price: </td><td>" + item.getPrice() + "</td></tr>";
         MESSAGE += "<tr><td>Product Discount: </td><td>" + item.getDiscount() + "</td></tr>";
         
+        String iType = "";
+        String url = "";
+        switch(itemId.charAt(0)){
+            case 'p':
+                iType += "Phone";
+                url += "./PhoneServlet";
+                break;
+            case 'l':
+                iType += "Laptop";
+                url += "./LaptopServlet";
+                break;
+            case 'h':
+                iType += "HeadPhone";
+                url += "./HeadPhoneServlet";
+                break;
+            case 'w':
+                iType += "Smart Watch";
+                url += "./WatchServlet";
+                break;
+            case 's':
+                iType += "Speakers";
+                url += "./SpeakersServlet";
+                break;
+            case 'e':
+                iType += "External Storage";
+                url += "./EStorageServlet";
+                break;
+        }
+
+        MESSAGE += "<tr><td>Product Category: </td><td>" + iType + "</td></tr>";
+
         MESSAGE += "<tr>";
         MESSAGE += "<td>";
         MESSAGE += "<form action=\"./WriteReviewPage\">";
@@ -30,17 +61,24 @@ public class ComposerPage extends HttpServlet {
         MESSAGE += "<input class=\"submit-button\" type=\"submit\" value=\"View Review\" style=\"background-color:red\">";
         MESSAGE += "</form></td>";
 
+        MESSAGE += "<td>";
+        MESSAGE += "<form action=\""; 
+        MESSAGE += url; 
+        MESSAGE += "\">";
+        MESSAGE += "<input class=\"submit-button\" type=\"submit\" value=\"itemlist\" style=\"background-color:red\">";
+        MESSAGE += "</form></td>";
 
 
+        // MESSAGE += "<td><form action=\"./CartPage\">";
+        // MESSAGE += "<input type=\"hidden\" name=\"method\" value=\"addToCart\">";
+        // MESSAGE += "<input type=\"hidden\" name=\"ItemId\" value=\""+ item.getItemId() + "\">";
+        // MESSAGE += "<input type=\"hidden\" name=\"ItemName\" value=\""+ item.getItemName() + "\">";
+        // MESSAGE += "<input type=\"hidden\" name=\"Stocks\" value=\""+ item.getStock() + "\">";
+        // MESSAGE += "<input class=\"submit-button\" type=\"submit\" value=\"Add to cart\" style=\"background-color:red\">";
+        // MESSAGE += "</form></td></tr>";
+        MESSAGE += "</tr></table>";
 
-        MESSAGE += "<td><form action=\"./CartPage\">";
-        MESSAGE += "<input type=\"hidden\" name=\"method\" value=\"addToCart\">";
-        MESSAGE += "<input type=\"hidden\" name=\"ItemId\" value=\""+ item.getItemId() + "\">";
-        MESSAGE += "<input type=\"hidden\" name=\"ItemName\" value=\""+ item.getItemName() + "\">";
-        MESSAGE += "<input type=\"hidden\" name=\"Stocks\" value=\""+ item.getStock() + "\">";
-        MESSAGE += "<input class=\"submit-button\" type=\"submit\" value=\"Add to cart\" style=\"background-color:red\">";
-        MESSAGE += "</form></td></tr>";
-        MESSAGE += "</table>";
+
 
         showPage(response,MESSAGE);
     } 
@@ -52,7 +90,7 @@ public class ComposerPage extends HttpServlet {
         java.io.PrintWriter out = response.getWriter();
         out.println("<html>");
         out.println("<head>");
-        out.println("<title>Check out</title>");  
+        out.println("<title>Item information</title>");  
         out.println("</head>");
         out.println("<body>");
         out.println(message);

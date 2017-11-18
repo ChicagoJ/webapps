@@ -383,7 +383,7 @@
     <url-pattern>/testBar</url-pattern>
   </servlet-mapping>
 
-    <servlet>
+  <servlet>
     <servlet-name>SalesReport</servlet-name>
     <servlet-class>SalesReport</servlet-class>
   </servlet>
@@ -391,5 +391,15 @@
   <servlet-mapping>
     <servlet-name>SalesReport</servlet-name>
     <url-pattern>/SalesReport</url-pattern>
+  </servlet-mapping> 
+
+  <servlet>
+    <servlet-name>AutoCompleteServlet</servlet-name>
+    <servlet-class>AutoCompleteServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AutoCompleteServlet</servlet-name>
+    <url-pattern>/autocomplete</url-pattern>
   </servlet-mapping>  
 </web-app>

@@ -30,6 +30,8 @@ public class ItemOrder {
   }
 
   public double getDiscount() {
+    // System.out.println("the item " + getItem() + " discount is " + getItem().getDiscount());
+
     if(getItem().getDiscount() != 0){
       return(getItem().getDiscount());
     }
@@ -58,6 +60,7 @@ public class ItemOrder {
   }
 
   public double getTotalCost() {
+    // System.out.println("the discount is " + getDiscount());
     if(getDiscount()!=0){
         return(getNumItems() * getCost() * getDiscount() - getRebates());
     } else {

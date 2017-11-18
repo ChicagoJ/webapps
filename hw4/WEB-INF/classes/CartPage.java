@@ -117,6 +117,7 @@ public class CartPage extends HttpServlet {
           double totalcost = 0;
           for(int i=0; i<itemsOrdered.size(); i++) {
             order = (ItemOrder)itemsOrdered.get(i);
+            // System.out.println("the item is " + order.getItem());
             cnt += (int)order.getNumItems();
             totalcost += order.getTotalCost();
             // System.out.println("total cost is :" + totalcost);

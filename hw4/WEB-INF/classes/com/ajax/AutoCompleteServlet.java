@@ -18,8 +18,6 @@ import java.util.Iterator;
 public class AutoCompleteServlet extends HttpServlet {
 
      ServletContext context;
-     ComposerData compData = new ComposerData();
-     HashMap composers = compData.getComposers();
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -36,6 +34,8 @@ public class AutoCompleteServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
+        ComposerData compData = new ComposerData();
+        HashMap composers = compData.getComposers();
 
         String action = request.getParameter("action");
         String targetId = request.getParameter("id");
